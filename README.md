@@ -56,7 +56,9 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 
 		import jp.appAdForce.AdLtvManager;2. AppAdForceをインスタンス宣言する。
 		private var ad:AdLtvManager = new AdLtvManager();
-![コードの編集](./doc/env_flashbuilder/ja/img007.png)3. 成果計測用のコードをメインMXMLアプリケーションに追加します。<br>　 ※ ここでは初期処理イベントハンドラで計測する方法を記述します。		<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"　 xmlns:s="library://ns.adobe.com/flex/spark" applicationComplete="init(event)">		<fx:Script><![CDATA[ 			import jp.appAdForce.AdLtvManager;			private var ad:AdLtvManager = new AdLtvManager();			import mx.events.FlexEvent;			protected function init(event:FlexEvent):void { 				ad.sendConversionWithStartPage("http://○○○○");			}sendConversionWithStartPage関数の引数はURLになります。アプリ起動時に表示させたいページのURLをご指定ください。※ページのご用意が無い場合は、ページの作成をお願い致します。ブラウザに表示するページが特に無い場合は、以下のように文字列”default”を渡してください。	ad.sendConversionWithStartPage("default");※ デフォルトのページはアプリを特定せず汎用的にご使用いただくため、デザイン・内容ともに非常にシンプルなものになっております。各広告主様に共用いただく形となるため、自由な変更も行えません。広告主様で独自に作成されましたオリジナルページをご使用いただくことを推奨いたします。#####【 起動時以外で成果計測を行いたい場合 】起動時以外のタイミングでブラウザを開き、そのタイミングで成果計測を行いたい場合には任意の場所(ボタン押下のコールバックなど)に、以下のように記述してください。	ad.sendConversionWithStartPage("http://○○○○");
+![コードの編集](./doc/env_flashbuilder/ja/img007.png)3. 成果計測用のコードをメインMXMLアプリケーションに追加します。<br>　 ※ ここでは初期処理イベントハンドラで計測する方法を記述します。		<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   applicationComplete="init(event)">			<fx:Script><![CDATA[ 				import jp.appAdForce.AdLtvManager;				private var ad:AdLtvManager = new AdLtvManager();				import mx.events.FlexEvent;				protected function init(event:FlexEvent):void { 					ad.sendConversionWithStartPage("http://○○○○");				}sendConversionWithStartPage関数の引数はURLになります。アプリ起動時に表示させたいページのURLをご指定ください。※ページのご用意が無い場合は、ページの作成をお願い致します。ブラウザに表示するページが特に無い場合は、以下のように文字列”default”を渡してください。	ad.sendConversionWithStartPage("default");※ デフォルトのページはアプリを特定せず汎用的にご使用いただくため、デザイン・内容ともに非常にシンプルなものになっております。各広告主様に共用いただく形となるため、自由な変更も行えません。広告主様で独自に作成されましたオリジナルページをご使用いただくことを推奨いたします。#####【 起動時以外で成果計測を行いたい場合 】起動時以外のタイミングでブラウザを開き、そのタイミングで成果計測を行いたい場合には任意の場所(ボタン押下のコールバックなど)に、以下のように記述してください。	ad.sendConversionWithStartPage("http://○○○○");
 ### 2.4 設定ファイルの編集
 ※OSによって手順が異なります。
 ### ・[iOSの設定](./doc/setting_ios/ja/README.md)
@@ -173,7 +175,7 @@ LTV計測により、広告流入別の課金金額や入会数などを計測�
 |:------|:------|
 |AdLtvManager.PARAM_SKU|Stock Keeping Unit(商品管理コード)<br>（半角英数字32文字まで）<br>商品の在庫管理する際に使用してください|
 |AdLtvManager.PARAM_PRICE|Price<br>（整数値　日本円）<br>売上額を管理する際に使用してください。|
-|任意でパラメータを加える事も可能です。|Currency<br>（半角英字3文字の通貨コード）<br>通貨別で課金額を集計する際に使用してください。<br>通貨が設定されていない場合、PriceをJPY(日本円)として扱います。|ad.addParameter (“任意のパラメータ名”, 値);<br>※1アンダースコア（”_”）をパラメータ名の先頭に記述しないでください。<br>※2同一パラメータ名を記述した場合は、後者が有効となります。<br>※3 半角英数字以外は使用できません。|
+|任意でパラメータを加える事も可能です。|Currency<br>（半角英字3文字の通貨コード）<br>通貨別で課金額を集計する際に使用してください。<br>通貨が設定されていない場合、PriceをJPY(日本円)として扱います。|ad.addParameter (“任意のパラメータ名”, 値);<br>※1アンダースコア（”_”）をパラメータ名の先頭に記述しないでください。<br>※2同一パラメータ名を記述した場合は、後者が有効となります。<br>※3 半角英数字以外は使用できません。|
 
 ＜オプションの使用例＞
 
