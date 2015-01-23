@@ -255,7 +255,9 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 ######※mxmlファイルを複数利用している場合はmxmlファイル毎に以下のような計測処理の記述が必要です。
 <実装サンプル>
 
-	<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"　 xmlns:s="library://ns.adobe.com/flex/spark" applicationComplete="foxInitialize(event)">	<fx:Script><![CDATA[ 	import jp.appAdForce.analyticsManager;	private var analytics: AnalyticsManager = new AnalyticsManager ();	private function foxInitialize(event:Event):void { 	//起動計測用リスナー設定	NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, 		function onInvoke(event:Event):void {			analytics.sendStartSession();　//起動計測		});	}
+	<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   applicationComplete="foxInitialize(event)">	<fx:Script><![CDATA[ 	import jp.appAdForce.analyticsManager;	private var analytics: AnalyticsManager = new AnalyticsManager ();	private function foxInitialize(event:Event):void { 	//起動計測用リスナー設定	NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, 		function onInvoke(event:Event):void {			analytics.sendStartSession();　//起動計測		});	}
 	・・・省略## 5.7 課金イベントトラッキングアプリ内課金を利用していない売上をトラッキングするために、各パラメータを明示的に指定できます。本機能では広告経由および自然流入経由での売上をそれぞれ計測可能です。<br>
 ※広告経由の売上のみを計測したい場合はLTV計測で計測可能ですので本機能の実装は必要ありません。<br>※主に自然流入経由の売上を計測したい場合などに本機能を実装してください。|パラメータ|タイプ|最大長|必須|概要|
 |:---|:---:|:---:|:---:|:---|
