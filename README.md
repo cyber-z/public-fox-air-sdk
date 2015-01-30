@@ -157,29 +157,8 @@ LTV計測により、広告流入別の課金金額や入会数などを計測�
 
 成果地点ID(必須)：管理者より連絡します。その値を入力してください。
 
+[sendLtvの詳細](./doc/send_ltv_conversion/ja)
 
-######<アプリ内でLTV計測を行う（広告主端末IDあり）><br>
-アプリ内部の成果に、広告主端末ID（会員IDなど）を含める事ができ、これを基準とした成果計測が行えます。以下のように記述してください。
-
-	ad.sendLtvWithAdid(成果地点ID, “広告主端末ID”);
-
-
-成果地点ID(必須)：管理者より連絡します。その値を入力してください。広告主端末ID(オプション)：広告主様が管理しているユニークな識別子（会員IDなど）です。######【アプリ内計測時(A/B)に設定する事が可能なオプション】アプリ内計測時には、下記パラメータもオプションとして設定する事が可能です。＜オプションの設定例＞
-
-	ad.addParameter(“パラメータ名”, “値”);
-
-
-▼ オプション
-
-|パラメータ名|概要|
-|:------|:------|
-|AdLtvManager.PARAM_SKU|Stock Keeping Unit(商品管理コード)<br>（半角英数字32文字まで）<br>商品の在庫管理する際に使用してください|
-|AdLtvManager.PARAM_PRICE|Price<br>（整数値　日本円）<br>売上額を管理する際に使用してください。|
-|任意でパラメータを加える事も可能です。|Currency<br>（半角英字3文字の通貨コード）<br>通貨別で課金額を集計する際に使用してください。<br>通貨が設定されていない場合、PriceをJPY(日本円)として扱います。|ad.addParameter (“任意のパラメータ名”, 値);<br>※1アンダースコア（”_”）をパラメータ名の先頭に記述しないでください。<br>※2同一パラメータ名を記述した場合は、後者が有効となります。<br>※3 半角英数字以外は使用できません。|
-
-＜オプションの使用例＞
-
-	ad.addParameter (AdLtvManager.PARAM_SKU, “ABC1234”);	ad.addParameter (AdLtvManager.PARAM_PRICE, “2000”);	ad.addParameter (“my_param”, “ABC”);	ad.sendLtvWithAdid (70, “Taro”);
 
 ## 4.3 動作確認
 
@@ -258,14 +237,7 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 	<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				   applicationComplete="foxInitialize(event)">	<fx:Script><![CDATA[ 	import jp.appAdForce.analyticsManager;	private var analytics: AnalyticsManager = new AnalyticsManager ();	private function foxInitialize(event:Event):void { 	//起動計測用リスナー設定	NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, 		function onInvoke(event:Event):void {			analytics.sendStartSession();　//起動計測		});	}
-	・・・省略## 5.7 課金イベントトラッキングアプリ内課金を利用していない売上をトラッキングするために、各パラメータを明示的に指定できます。本機能では広告経由および自然流入経由での売上をそれぞれ計測可能です。<br>
-※広告経由の売上のみを計測したい場合はLTV計測で計測可能ですので本機能の実装は必要ありません。<br>※主に自然流入経由の売上を計測したい場合などに本機能を実装してください。|パラメータ|タイプ|最大長|必須|概要|
-|:---|:---:|:---:|:---:|:---|
-|eventName|String|255|必須|トラッキングを行うイベントを識別できる任意の名前を設定します。<br>イベント名は自由に設定可能です。<br>イベント単位でグルーピングされ、それぞれのイベントごとに集計を行うことができます。||action|String|255|オプション|イベントに属するアクション名を設定します。<br>アクション名は自由に設定可能です。<br>各イベントをドリルダウンすることで、アクションごとに集計を行うことができます。<br>特に指定しない場合は””を設定してください。|
-|label|String|255|オプション|アクションに属するラベル名を設定します。<br>ラベル名は自由に設定可能です。<br>各アクションをドリルダウンすることで、ラベルごとに集計を行うことができます。<br>特に指定しない場合は””を設定してください。||orderID|String|255|オプション|注文番号。特に指定いない場合は""を設定してください。|
-|sku|String|255|オプション|商品コード。特に指定しない場合は””を設定してください。||itemName|String|255|必須|商品名||price|double||必須|商品単価|
-|quantity|int||必須|購入数||currency|String||オプション|通貨コード。指定しなかった場合は"JPY"|トラッキングを行いたい任意の課金地点を計測することで、イベント名をキーにした売上を集計することができます。<br>以下のように記述してください。
-	analytics.sendEvent(eventName, action, label, orderId, sku, itemName, price, quantity, currency);# 6 リエンゲージメント計測機能の実装リエンゲージメント広告経由での起動を計測するための実装を説明します。
+	・・・省略[アクセス解析による課金計測](./doc/analytics_purchase/ja)# 6 リエンゲージメント計測機能の実装リエンゲージメント広告経由での起動を計測するための実装を説明します。
 
 ## 6.1 リエンゲージメント計測API
 |API|概要|
@@ -275,7 +247,8 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 		import jp.appAdForce.AdLtvManager;2. AppAdForceをインスタンス宣言する。
 		private var ad:AdLtvManager = new AdLtvManager();3. アプリケーションの起動イベントリスナー内でsendReengagementConversionメソッドを実装します。
 実装サンプル
-	<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"　 xmlns:s="library://ns.adobe.com/flex/spark" applicationComplete="foxInitialize(event)">		<fx:Script><![CDATA[ 		import jp.appAdForce.AdLtvManager;		private var ad: AdLtvManager = new AdLtvManager ();		private function foxInitialize(event:Event):void { 		//リエンゲージメント計測用リスナー設定		NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, 		function onInvoke(event:InvokeEvent):void {			if(event.arguments.length > 0) {	    		//起動計測		    	ad.sendReengagementConversion(event.arguments[0].toString());			}		});	} 	・・・省略# 7 疎通テストの実施マーケットへの申請までに、Force Operation Xを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。効果測定テストの手順については、管理者よりご連絡いたしますのでその手順に従いテストを実施してください。成果のための通信は、起動後に一度のみ行わるため、二回目以降の起動では通信が発生しません。続けて効果測定テストを行いたい場合には、アプリケーションをアンインストールし、再度インストールから行ってください。##7.1 テストの手順
+	<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"　 xmlns:s="library://ns.adobe.com/flex/spark" applicationComplete="foxInitialize(event)">		<fx:Script><![CDATA[ 		import jp.appAdForce.AdLtvManager;		private var ad: AdLtvManager = new AdLtvManager ();		private function foxInitialize(event:Event):void { 		//リエンゲージメント計測用リスナー設定		NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, 		function onInvoke(event:InvokeEvent):void {			if(event.arguments.length > 0) {	    		//起動計測		    	ad.sendReengagementConversion(event.arguments[0].toString());			}		});	} 	・・・省略
+# 7 疎通テストの実施マーケットへの申請までに、Force Operation Xを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。効果測定テストの手順については、管理者よりご連絡いたしますのでその手順に従いテストを実施してください。成果のための通信は、起動後に一度のみ行わるため、二回目以降の起動では通信が発生しません。続けて効果測定テストを行いたい場合には、アプリケーションをアンインストールし、再度インストールから行ってください。##7.1 テストの手順
 SDKが正常に導入されていることを確認するためのテスト手順は以下の通りです。ProGuardを掛けてリリースを行う場合、必ずProGuardを掛けた状態でテストの実施をお願い致します。1. テスト用端末にテストアプリがインストールされている場合には、アンインストール2. テスト用端末の「設定」→「Safari」→「Cookieとデータを消去」によりCookieを削除
 3. 弊社より発行したテスト用URLをクリック<br>
    ※ テスト用URLは必ずOSに設定されているデフォルトブラウザでリクエストされるようにしてください。デフォルトブラウザとは、URLをクリックした際に自動で起動するブラウザのことです。メールアプリやQRコードアプリを利用され、そのアプリ内WebViewで遷移した場合には計測できません。4. マーケットへリダイレクト<br>
