@@ -448,7 +448,7 @@ interstitial.show("広告表示ID");
 
 > showメソッドの引数には管理者より発行される広告表示IDを指定してください。
 
-[広告配信機能の詳細](./doc/deliver/README.md)
+[広告配信機能の詳細](./doc/fox_trade/README.md)
 
 <div id="integration_test"></div>
 ## 8. 疎通テストの実施
@@ -504,4 +504,4 @@ URLスキームは全て小文字で設定を行ってください。
 
 F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。重複検知が行えない設定では、同一端末で再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。重複検知の精度を向上するために、以下の設定を行ってください。
 
-* [(Android)広告IDの利用/重複排除の設定](./doc/setting_android/README.md)
+* [(Android)広告IDの利用/重複排除の設定](./doc/setting_android/README.md#get_adid)

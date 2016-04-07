@@ -5,15 +5,21 @@ AIR アプリケーション記述子とはMXMLアプリケーションに対応
 
 1. &lt;manifest&gt; ～ &lt;/ manifest&gt;内に、以下の設定を追加する。
 
+```xml
 		<uses-permission android:name="android.permission.INTERNET" />		<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+```
 
 2. &lt;application&gt; ～ &lt;/application&gt;内に、以下の設定を追加する。
 
+```xml
 		<receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">			<intent-filter>				<action android:name="com.android.vending.INSTALL_REFERRER" />		   </intent-filter>		</receiver>
+```
 
 3. &lt;application&gt; ～ &lt;/application&gt;内に、以下の設定を追加する。
 
+```xml
 		<meta-data android:name="APPADFORCE_APP_ID" android:value="1" />		<meta-data android:name="APPADFORCE_SERVER_URL" android:value="0117d62807ed～c0eb4" />		<meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="0117d62807ed～c0eb4" />
+```
 
 > ▼ パラメーター<br>> APPADFORCE_APP_ID：アプリごとに発行されるID ⇒ 管理者より連絡します。<br>> APPADFORCE_SERVER_URL：通信先を示す文字列 ⇒ 管理者より連絡します。<br>> APPADFORCE_CRYPTO_SALT：HASH-SALT文字列 ⇒ 管理者より連絡します。<br>
 
@@ -22,12 +28,12 @@ AIR アプリケーション記述子とはMXMLアプリケーションに対応
 ### 複数のInstallReceiverを共存させる場合の制限事項
 
 ※ 現在F.O.X AIRエクステンションは複数のエクステンションでのInstallReceiverの共存に対応していません。※ 別のエクステンションにInstallReceiverの転送機能があれば、そちらを利用してF.O.XのInstallReceiverを呼び出してください。
-## AndroidManifest.xmlで指定可能なオプション
-### Google Play Services 設定
-Google Play Servicesの設定のために&lt;application&gt; ～ &lt;/application&gt;内に、以下を追加してください。
-	<meta-data
+<div id="get_adid"></div>## AndroidManifest.xmlで指定可能なオプション
+### 広告IDを取得するためのGooglePlayServices 設定
+広告ID(AdvertisingID)を取得するためGoogle Play Servicesの設定が必要となります。<br>AndroidManifest.xmlの&lt;application&gt; ～ &lt;/application&gt;内に、以下を追加してください。
+```xml	<meta-data
 		android:name="com.google.android.gms.version"
-		android:value="@integer/google_play_services_version" />### Google Playデベロッパープログラムポリシーの準拠
+		android:value="@integer/google_play_services_version" />```### Google Playデベロッパープログラムポリシーの準拠
 Force Operation X Android SDKはGoogle Playデベロッパープログラムポリシーに準拠しています。本SDKはポリシーに準拠するために、永続的なデバイスID (IMEI及びMACアドレス) が取得される場合には広告IDが取得されません。2014年8月1日から、Playストアにアップロードされたすべての更新や新着アプリには、広告目的で使用する端末IDには広告IDを利用する必要があります。## 外部ストレージを利用した重複排除設定
 
 アプリケーションの初回起動時にSDKが生成した識別IDをローカルストレージまたはSDカードに保存することで、アプリケーション再インストール時に重複判定を行うことができます。
