@@ -20,4 +20,8 @@ Xcodeでplistファイルを作成します。<br>AppAdForce.plistのファイ�
 > “2”はブラウザでの成果を取得せず、後述のURLスキーマ起動での成果取得を行います。
 
 AppAdForce.plist
-![iOSへの導入](../../env_flashbuilder/ja/img008.png)
+
+![iOSへの導入](/lang/ja/doc/env_flashbuilder/img008.png)
+
+---
+[トップ](/lang/ja/README.md)

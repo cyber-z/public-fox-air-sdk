@@ -355,7 +355,7 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 ### 6.1 リエンゲージメント計測API
 
 |API|概要|
-|:---:|:---:|
+|:---|:---:|
 |sendReengagementConversion(String urlScheme):void|リエンゲージメント広告経由で起動したユーザーの成果を計測|
 
 ### 6.2 コードの編集
@@ -401,6 +401,7 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 	・・・省略
 ```
 
+<div id="fox_trade"></div>
 ## 7. 広告配信機能
 
 本機能を利用することで相互集客広告を表示させることができます。

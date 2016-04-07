@@ -22,4 +22,9 @@
 
 ＜オプションの使用例＞
 
+```as3
 	ad.addParameter (AdLtvManager.PARAM_SKU, “ABC1234”);	ad.addParameter (AdLtvManager.PARAM_PRICE, “2000”);	ad.addParameter (“my_param”, “ABC”);	ad.sendLtvWithAdid (70, “Taro”);
+```
+
+---
+[トップ](/lang/ja/README.md)

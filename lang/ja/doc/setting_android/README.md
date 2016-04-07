@@ -17,7 +17,7 @@ AIR アプリケーション記述子とはMXMLアプリケーションに対応
 
 > ▼ パラメーター<br>> APPADFORCE_APP_ID：アプリごとに発行されるID ⇒ 管理者より連絡します。<br>> APPADFORCE_SERVER_URL：通信先を示す文字列 ⇒ 管理者より連絡します。<br>> APPADFORCE_CRYPTO_SALT：HASH-SALT文字列 ⇒ 管理者より連絡します。<br>
 
-![Androidへの導入](../../env_flashbuilder/ja/img009.png)
+![Androidへの導入](/lang/ja/doc/env_flashbuilder/img009.png)
 
 ### 複数のInstallReceiverを共存させる場合の制限事項
 
@@ -57,8 +57,8 @@ Environment.getExternalStorageDirectory().getPath()で取得できるパス/ア�
 <meta-data android:name="APPADFORCE_ID_FILE" android:value="任意のファイル名" />
 ```
 
-> 任意のディレクトリ名やファイル名を指定した場合でも、Environment.getExternalStorageDirectory().getPath()の返り値のパス配下に作成します。Environment.getExternalStorageDirectory().getPath()の返り値は端末やOSバージョンによって異なります。 
-> "APPADFORCE_ID_DIR"(任意のディレクトリ名)を指定せず、任意のファイル名のみを指定した場合、アプリのパッケージ名のディレクトリが作成され、その配下に任意のファイル名で保存されます。 
+> 任意のディレクトリ名やファイル名を指定した場合でも、Environment.getExternalStorageDirectory().getPath()の返り値のパス配下に作成します。Environment.getExternalStorageDirectory().getPath()の返り値は端末やOSバージョンによって異なります。
+> "APPADFORCE_ID_DIR"(任意のディレクトリ名)を指定せず、任意のファイル名のみを指定した場合、アプリのパッケージ名のディレクトリが作成され、その配下に任意のファイル名で保存されます。
 > ※"APPADFORCE_ID_FILE"(任意のファイル名)を指定せず、任意のディレクトリ名のみを指定した場合、任意の名前でディレクトリが作成され、その配下に"__FOX_XUNIQ__"で保存されます。
 通常は設定の必要はありません。
 
@@ -70,13 +70,13 @@ AndroidManifest.xmlの設定例を次に記載します。
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-<application 
+<application
 	android:icon="@drawable/ic_launcher"
 	android:label="@string/app_name" >
-	
+
 	<meta-data android:name="APPADFORCE_ID_DIR" android:value="fox_id_dir" />
 	<meta-data android:name="APPADFORCE_ID_FILE" android:value="fox_id_file" />
-	
+
 </application>
 
 ```
@@ -94,3 +94,6 @@ Force Operation X SDKによる外部ストレージへのアクセスを停止�
 ```
 
 本設定を行うことで外部ストレージに対する記録が停止しますが、アプリケーションの削除によりデータが常に初期化されるため、正確なインストール計測が行われなくなります。
+
+---
+[トップ](/lang/ja/README.md)

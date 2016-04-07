@@ -138,7 +138,7 @@
 
 ## 4. 表示サンプル
 
-### [Android] 表示サンプル
+### [Android]
 
 <table>
 <tr>
@@ -151,7 +151,7 @@
 </tr>
 </table>
 
-### [iOS] 表示サンプル
+### [iOS]
 
 <table>
 <tr>
