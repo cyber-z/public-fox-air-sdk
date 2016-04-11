@@ -7,6 +7,7 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 ## 目次
 
 * **[1. 概要](#general)**
+	* [Fox Air Extensionのビルド詳細](./doc/build_extension/README.md)
 * **[2. AIRエクステンション導入手順(FlashBuilder)](#integration_flashbuilder)**
 	* [iOSの設定詳細](./doc/setting_ios/README.md)
 	* [Androidの設定詳細](./doc/setting_android/README.md)
@@ -48,22 +49,21 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 
 Force Operation X SDKでは、インストールおよびLTVの計測、アクセス解析を行うことができます。
 
+尚、[FOX_AdobeAIR_Extension_v2.16.2g](https://github.com/cyber-z/public-fox-air-sdk/releases/tag/v2.16.2)以降は、お使いの環境にインストールされている[Adobe Air SDK](http://www.adobe.com/devnet/air/air-sdk-download.html)のバージョンでビルド出来るよう、ラッパープロジェクトを提供しております。
+
 SDKの実装後は、アプリケーションの動作及び効果測定の結果に問題のないことを確認した後にマーケットへの申請を行ってください。効果測定のテスト手順については、Force Operation X管理者よりご連絡いたします。
 
+### 1.1	Fox Air Extensionのビルド
 
-### 1.1	SDK仕様
+Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devnet/air/air-sdk-download.html)のバージョンと、弊社で提供するANEで指定しているバージョンに差異が出来ぬよう、ラッパープロジェクトを公開しています。
+お使いのAirSDKでビルドください。尚、ビルドの詳細は以下を参照ください。
 
-F.O.X SDKをアプリケーションに導入することで、以下の機能を実現します。
+**[Fox Air Extensionのビルド詳細](./doc/build_extension/README.md)**
 
-|処理|必須|概要|
-|:------:|:------:|:------|
-|インストール計測|必須|起動時はブラウザが起動し、Cookie計測により広告効果測定を行います。<br>コンバージョン数、CVRなどを測定することができます。<br>メソッド名：sendConversion|
-|LTV計測|オプション|任意の成果地点で成果通知を行い、広告別の課金数や入会数の計測を行います。<br>課金金額、退会数などを測定することができます。<br>メソッド名：sendLtv|
-|アクセス解析|オプション|アプリの起動時およびバックグラウンドからの復帰時の起動計測を行います。<br>起動数、アクティブユーザー数(DAU)、継続率などを測定することができます。<br>メソッド名：sendStartSession|
+### 1.2 既存SDKの展開
 
-### 1.2 SDKの展開
-
-AppAdForce_AIR_Extension_<version>.zipを展開すると以下２つのファイルが存在します。F.O.X SDKの動作にはGoogle Play Servicesが必要になり、通常はあらかじめGoogle Play Servicesが組み込まれたwithGooglePlayServicesをご利用ください。
+**前項1.2の手順を行う場合、本項は不要となります。**<br>
+既存のSDKを[ダウンロード](https://github.com/cyber-z/public-fox-air-sdk/releases/tag/v2.16.2)し、AppAdForce_AIR_Extension_<version>.zipを展開すると以下２つのファイルが存在します。F.O.X SDKの動作にはGoogle Play Servicesが必要になり、通常はあらかじめGoogle Play Servicesが組み込まれたwithGooglePlayServicesをご利用ください。
 
 既にGoogle Play Servicesを利用されているか、もしくは別バージョンのGoogle Play Servicesをご利用されたい場合にはwithoutGooglePlayServicesを選択し、ご自身でGoogle Play Servicesの導入を行う必要があります。
 また、Android版をビルドせずiOSのみビルドする際はGoogle Play Servicesは不要です。
