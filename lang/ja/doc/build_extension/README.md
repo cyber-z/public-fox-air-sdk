@@ -78,6 +78,9 @@ Adobe Air SDK version 21.0を使っている場合
 * FoxExtensionProjプロジェクトをメニューから[プロジェクト] > [クリーン]を実行します。
 * FoxExtensionProj/bin/FoxExtensionProj.swcが作成されたら完了です。
 
+[プロジェクトのインポート]
+![ImportProject](./import_project.png)
+
 [クリーンを選択する]<br>
 ![Clean01](./clean_01.png)
 
