@@ -32,14 +32,20 @@ else
 	echo "${BR}"
 	echo '\033[0;31mERROR : "bin/FoxExtensionProj.swc" is not exist. Please clean this project.\033[0;39m'
 	echo "${BR}"
+	rm -rf $TMP
+	rm -rf $PLATFORM
 	exit 1
 fi
 
-echo '> Please input local "Flex SDK Home" path (e.g. /Applications/Adobe\ Flash\ Builder\ 4.7/sdks/4.6.0_air20): '
+echo '> Please input local "Flex SDK Home" path (e.g. /Applications/Adobe Flash Builder 4.7/sdks/4.6.0_air20): '
 read FLEX_SDK
-if test ${#FLEX_SDK} -eq 0 ;then
-	echo '\033[0;31mERROR : Inputted "path" is incorrect!!\033[0;39m'
+if test -e "${FLEX_SDK}/bin/adt" ;then
+	echo "Using path : ${FLEX_SDK}"
+else
+	echo '\033[0;31mERROR : Inputted path is incorrect!!\033[0;39m'
 	echo "${BR}"
+	rm -rf $TMP
+	rm -rf $PLATFORM
 	exit 1
 fi
 
@@ -54,6 +60,8 @@ if [ ${IOS_VERSION} = "$null" ]; then
 	echo "${BR}"
 	echo '\033[0;31mERROR : Inputted "version" is incorrect!!\033[0;39m'
 	echo "${BR}"
+	rm -rf $TMP
+	rm -rf $PLATFORM
 	exit 1
 fi
 
@@ -66,6 +74,8 @@ if test ${#ANDROID_VERSION} -eq 0 ;then
 fi
 if [ ${ANDROID_VERSION} = "$null" ]; then
 	echo '\n\033[0;31mERROR : Inputted "version" is incorrect!!\033[0;39m'
+	rm -rf $TMP
+	rm -rf $PLATFORM
 	exit 1
 fi
 
@@ -88,6 +98,8 @@ else
 	echo "${BR}"
 	echo '\033[0;31mERROR : Selection is incorrect!!\033[0;39m'
 	echo "${BR}"
+	rm -rf $TMP
+	rm -rf $PLATFORM
 	exit 1
 fi
 
@@ -163,7 +175,7 @@ fi
 
 mkdir -m 755 output
 
-"${FLEX_SDK}"/bin/adt -package \
+"${FLEX_SDK}/bin/adt" -package \
   -target ane ./output/${ANE_LIB_NAME} conf/extension.xml \
   -swc bin/FoxExtensionProj.swc \
   -platform Android-ARM -platformoptions conf/$ANDROID_OPTION \

@@ -62,7 +62,7 @@ Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devne
 
 ### 1.2 既存SDKの展開
 
-**前項1.2の手順を行う場合、本項は不要となります。**<br>
+**※前項1.2の手順を行う場合、本項は不要となります。**<br>
 既存のSDKを[ダウンロード](https://github.com/cyber-z/public-fox-air-sdk/releases/tag/v2.16.2)し、AppAdForce_AIR_Extension_<version>.zipを展開すると以下２つのファイルが存在します。F.O.X SDKの動作にはGoogle Play Servicesが必要になり、通常はあらかじめGoogle Play Servicesが組み込まれたwithGooglePlayServicesをご利用ください。
 
 既にGoogle Play Servicesを利用されているか、もしくは別バージョンのGoogle Play Servicesをご利用されたい場合にはwithoutGooglePlayServicesを選択し、ご自身でGoogle Play Servicesの導入を行う必要があります。

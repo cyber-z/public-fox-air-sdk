@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 CZ_BUILD_WORKSPACE=${PROJECT_DIR}/FoxANE.xcworkspace
 CZ_BUILD_PROJ=FoxANE.xcodeproj
 CZ_BUILD_SCHEME=FoxANE
