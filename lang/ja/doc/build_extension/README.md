@@ -101,16 +101,16 @@ Adobe Air SDK version 21.0を使っている場合
 > Please input local "Flex SDK Home" path (e.g. /Applications/Adobe\ Flash\ Builder\ 4.7/sdks/4.6.0_air20):
 ```
 
-3. ANEファイルに組み込むネイティブ版のFox iOS SDKのバージョンを指定します。そのままEnterを押した場合、3.1.0が標準で指定されます。<br>
+3. ANEファイルに組み込むネイティブ版のFox iOS SDKのバージョンを指定します。そのままEnterを押した場合、3.2.0が標準で指定されます。<br>
  → [Fox iOS SDKリリースページ](https://github.com/cyber-z/public-fox-ios-sdk/releases)（最新バージョンの指定を推奨）
 ```
-> Please input FOX iOS SDK "Version" that has ANE (default 3.1.0):
+> Please input FOX iOS SDK "Version" that has ANE (default 3.2.0):
 ```
 
-4. ANEファイルに組み込むネイティブ版のFox Android SDKのバージョンを指定します。そのままEnterを押した場合、3.1.0が標準で指定されます。<br>
+4. ANEファイルに組み込むネイティブ版のFox Android SDKのバージョンを指定します。そのままEnterを押した場合、3.2.0が標準で指定されます。<br>
  → [Fox Android SDKリリースページ](https://github.com/cyber-z/public-fox-android-sdk/releases)（最新バージョンの指定を推奨）
 ```
-> Please input FOX Android SDK "Version" that has ANE (default 3.1.0):
+> Please input FOX Android SDK "Version" that has ANE (default 3.2.0):
 ```
 
 5. GooglePlayServicesを組み込む場合、`y`を入力してEnterを押します。(AdvertisingIDを取得する場合、`y`を入力してください。既に組み込まれている場合は不要です。)<br>Enterを押すとビルドが開始されます。
