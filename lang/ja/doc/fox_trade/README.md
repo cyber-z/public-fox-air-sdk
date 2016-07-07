@@ -70,6 +70,26 @@
 
 > インタースティシャル広告が表示できなかった場合、`AdFailed`が呼ばれた後にも`AdClosed`は呼ばれます。
 
+### AdOperation
+
+広告表示をカスタマイズする際に使用するAPI
+
+|返り値型|メソッド|詳細|
+|---:|:---|:---|
+|-|AdOperation ( )|コンストラクター|
+|void|requestAdInfo ( String placementId )<br><br>`placementID` : 広告表示ID (管理者より発行されます)|広告情報要求API。広告表示に必要なJSONオブジェクトをaddEventListenerによって返します|
+|void|sendImp ( String placementId, String sessionId, boolean impStatus )<br><br>`placementID` : 広告表示ID (管理者より発行されます)、requestAdInfoで指定したものと同じIDを指定します。<br>`sessionId` : JSONオブジェクトに含まれるセッションID<br>`impStatus` : 広告表示の正否をbooleanで指定|requestAdInfoで取得した広告が表示ができたかを送信するためのAPI。JSONに含まれている`session`を指定する必要があります。|
+|void|sendClick ( String placementId, String sessionId )<br><br>`placementID` : 広告表示ID (管理者より発行されます)、requestAdInfoで指定したものと同じIDを指定します。<br>`sessionId` : JSONオブジェクトに含まれるセッションID|requestAdInfoで取得した広告がタップされたことを送信するためのAPI。JSONに含まれている`session`を指定する必要があります。|
+
+### AdOperationEvent
+
+広告情報のリクエストAPIのコールバック
+
+|返り値型|メソッド|詳細|
+|---:|:---|:---|
+|AD_SUCCESS|正常に広告情報を取得できた場合に呼ばれます。|
+|AD_FAILED|広告情報の取得に失敗した場合に呼ばれます。|
+
 ## 3. コードへの組み込み
 
 ### 広告表示サンプル
@@ -134,6 +154,30 @@
 
   ]]>
 </fx:Script>
+```
+
+### 広告情報取得サンプル
+
+```as3
+var adO:AdOperation = new AdOperation();
+adO.addEventListener(AdOperationEvent.AD_SUCCESS, loadAdInfoSuccess);
+adO.addEventListener(AdOperationEvent.AD_FAILED, loadAdInfoFailed);
+adO.requestAdInfo("広告表示ID");
+
+private function loadAdInfoSuccess(event:AdOperationEvent):void {
+  var json:Object = event.data;
+  AdOperation.sendImp("広告表示ID", true, json.session);
+}
+
+private function loadAdInfoFailed(event:AdOperationEvent):void {
+  // 取得失敗
+}
+
+protected function button_ClickAd(event:MouseEvent):void {
+	// 広告をクリックした時
+	AdOperation.sendClick("広告表示ID", json.session);
+}
+
 ```
 
 ## 4. 表示サンプル

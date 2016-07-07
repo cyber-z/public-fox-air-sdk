@@ -4,7 +4,7 @@ echo "${BR}"
 echo '--- Create FoxSDK Air Extensionmake ---'
 
 #---initailize---
-DEFAULT_SDK_VERSION="3.1.0"
+DEFAULT_SDK_VERSION="3.2.0"
 ANE_LIB_NAME="FoxExtension.ane"
 BR="\n"
 #-Download to
@@ -50,7 +50,7 @@ else
 fi
 
 echo "${BR}"
-echo '> Please input FOX iOS SDK "Version" that has ANE (default 3.1.0): '
+echo '> Please input FOX iOS SDK "Version" that has ANE (default 3.2.0): '
 read IOS_VERSION
 if test ${#IOS_VERSION} -eq 0 ;then
 	IOS_VERSION=$DEFAULT_SDK_VERSION
@@ -66,7 +66,7 @@ if [ ${IOS_VERSION} = "$null" ]; then
 fi
 
 echo "${BR}"
-echo '> Please input FOX Android SDK "Version" that has ANE (default 3.1.0): '
+echo '> Please input FOX Android SDK "Version" that has ANE (default 3.2.0): '
 read ANDROID_VERSION
 if test ${#ANDROID_VERSION} -eq 0 ;then
 	ANDROID_VERSION=$DEFAULT_SDK_VERSION
@@ -129,7 +129,7 @@ xcodebuild \
 	-sdk iphoneos \
 	-configuration $CONFIGURATION \
 	build
-cp -f ./ANE-LIB_Fox_iOS/build/${CONFIGURATION}/FoxANE/libFoxANE.a \
+cp -f ./ANE-LIB_Fox_iOS/build/${CONFIGURATION}/FoxANE_${IOS_VERSION}/libFoxANE.a \
   $IPHONE_LIB/libFoxANE.a
 
 echo "build wrapper for DAHLIA"
@@ -140,7 +140,7 @@ xcodebuild \
 	-sdk iphoneos \
 	-configuration $CONFIGURATION \
 	build
-cp -f ./ANE-LIB_Fox_iOS/FoxAirWrapper/build/${CONFIGURATION}/FoxAirWrapper/libFoxAirWrapper.a \
+cp -f ./ANE-LIB_Fox_iOS/FoxAirWrapper/build/${CONFIGURATION}/FoxAirWrapper_${IOS_VERSION}/libFoxAirWrapper.a \
   $IPHONE_LIB/libFoxAirWrapper.a
 
 if [ " $CONFIGURATION" == " Release" ];then
@@ -171,7 +171,7 @@ echo "make ane for ${CONFIGURATION}"
 
 if test -e ./${ANE_LIB_NAME} ;then
 	rm ./${ANE_LIB_NAME}
-fi 
+fi
 
 mkdir -m 755 output
 

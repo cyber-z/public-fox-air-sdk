@@ -46,6 +46,7 @@
 		0D736A3B1680151D003D03E7 /* FoxANE-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoxANE-Prefix.pch"; sourceTree = "<group>"; };
 		0D736A3C1680151D003D03E7 /* FoxANE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoxANE.h; sourceTree = "<group>"; };
 		0D736A3E1680151D003D03E7 /* FoxANE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoxANE.m; sourceTree = "<group>"; };
+		B873EE881D2BCB06006B302F /* DLAdOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLAdOperation.h; sourceTree = "<group>"; };
 		B87CF0B21C63216C008BA4F6 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		B87CF0B41C63216C008BA4F6 /* AdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
 		B87CF0B51C63216C008BA4F6 /* AnalyticsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyticsManager.h; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		B87CF0B31C63216C008BA4F6 /* FOX_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
+				B873EE881D2BCB06006B302F /* DLAdOperation.h */,
 				B87CF0B41C63216C008BA4F6 /* AdManager.h */,
 				B87CF0B51C63216C008BA4F6 /* AnalyticsManager.h */,
 				B87CF0B61C63216C008BA4F6 /* DLAdStateDelegate.h */,
@@ -219,7 +221,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3.1.0;
+				CURRENT_PROJECT_VERSION = 3.2.0;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -247,7 +249,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 3.1.0;
+				CURRENT_PROJECT_VERSION = 3.2.0;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

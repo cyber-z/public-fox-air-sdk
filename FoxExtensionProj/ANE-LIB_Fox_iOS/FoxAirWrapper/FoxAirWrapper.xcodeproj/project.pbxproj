@@ -38,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B873EE871D2BC9F1006B302F /* DLAdOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLAdOperation.h; sourceTree = "<group>"; };
 		B87CF06B1C631C2C008BA4F6 /* libFoxAirWrapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFoxAirWrapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87CF07D1C631C51008BA4F6 /* DLABannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLABannerView.h; sourceTree = "<group>"; };
 		B87CF07E1C631C51008BA4F6 /* DLABannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLABannerView.m; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		B87CF08E1C63204F008BA4F6 /* FOX_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
+				B873EE871D2BC9F1006B302F /* DLAdOperation.h */,
 				B87CF08F1C63204F008BA4F6 /* AdManager.h */,
 				B87CF0901C63204F008BA4F6 /* AnalyticsManager.h */,
 				B87CF0911C63204F008BA4F6 /* DLAdStateDelegate.h */,
@@ -213,7 +215,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3.1.0;
+				CURRENT_PROJECT_VERSION = 3.2.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -257,7 +259,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3.1.0;
+				CURRENT_PROJECT_VERSION = 3.2.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
