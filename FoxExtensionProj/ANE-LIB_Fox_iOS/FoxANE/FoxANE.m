@@ -14,11 +14,12 @@
 #import "AnalyticsManager.h"
 #import "DLABannerView.h"
 #import "DLAInterstitial.h"
+#import "DLAdOperation.h"
 
 #pragma mark - utility
 static NSMutableDictionary* parms = nil;
 
-NSString* FREObject2String(FREObject arg)
+NSString* DLAFREObject2String(FREObject arg)
 {
     uint32_t length;
     const uint8_t *param;
@@ -27,18 +28,25 @@ NSString* FREObject2String(FREObject arg)
     return str;
 }
 
-int32_t FREObject2Int(FREObject arg)
+int32_t DLAFREObject2Int(FREObject arg)
 {
     int32_t num;
     FREGetObjectAsInt32(arg, &num);
     return num;
 }
 
-double FREObject2Double(FREObject arg)
+double DLAFREObject2Double(FREObject arg)
 {
     double num;
     FREGetObjectAsDouble(arg, &num);
     return num;
+}
+
+BOOL DLAFREObject2Bool(FREObject arg)
+{
+    uint32_t boolValue;
+    FREGetObjectAsBool(arg, &boolValue);
+    return boolValue;
 }
 
 static UIViewController* DLAGetRootViewController() {
@@ -62,11 +70,11 @@ FREObject sendConversionWithStartPage(FREContext ctx, void* funcData, uint32_t a
     NSLog(@"argc %d",argc);
     
     if (argc == 1) {
-        NSString* _url = FREObject2String(argv[0]);
+        NSString* _url = DLAFREObject2String(argv[0]);
         [[AppAdForceManager sharedManager]sendConversionWithStartPage:_url];
     } else if(argc == 2){
-        NSString* _url = FREObject2String(argv[0]);
-        NSString* _buid = FREObject2String(argv[1]);
+        NSString* _url = DLAFREObject2String(argv[0]);
+        NSString* _buid = DLAFREObject2String(argv[1]);
         [[AppAdForceManager sharedManager]sendConversionWithStartPage:_url buid:_buid];
     }
     return NULL;
@@ -74,7 +82,7 @@ FREObject sendConversionWithStartPage(FREContext ctx, void* funcData, uint32_t a
 
 FREObject sendReengagementConversion(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     if (argc == 1) {
-        NSString* _urlScheme = FREObject2String(argv[0]);
+        NSString* _urlScheme = DLAFREObject2String(argv[0]);
         [[AppAdForceManager sharedManager]setUrlScheme:[NSURL URLWithString:_urlScheme]];
     }
     return NULL;
@@ -86,7 +94,7 @@ FREObject sendLtv(FREContext ctx,void* funcData, uint32_t argc, FREObject argv[]
     NSLog(@"start sendLtv");
     NSLog(@"argc %d",argc);
     
-    int32_t cvpoint = FREObject2Int(argv[0]);
+    int32_t cvpoint = DLAFREObject2Int(argv[0]);
     NSLog(@"argv[0] is %d",cvpoint);
     
     AppAdForceLtv *ltv = [[AppAdForceLtv alloc] init];
@@ -105,9 +113,9 @@ FREObject sendLtvWithAdid(FREContext ctx,void* funcData, uint32_t argc, FREObjec
     NSLog(@"start sendLtv");
     NSLog(@"argc %d",argc);
     
-    int32_t cvpoint = FREObject2Int(argv[0]);
+    int32_t cvpoint = DLAFREObject2Int(argv[0]);
     NSLog(@"argv[0] is %d",cvpoint);
-    NSString* buid = FREObject2String(argv[1]);
+    NSString* buid = DLAFREObject2String(argv[1]);
     NSLog(@"argv[1] is %@",buid);
     
     AppAdForceLtv *ltv = [[AppAdForceLtv alloc] init];
@@ -125,9 +133,9 @@ FREObject sendLtvWithAdid(FREContext ctx,void* funcData, uint32_t argc, FREObjec
 FREObject addParameter(FREContext ctx,void* funcData, uint32_t argc, FREObject argv[]){
     
     NSLog(@"start addParameter");
-    NSString* name = FREObject2String(argv[0]);
+    NSString* name = DLAFREObject2String(argv[0]);
     NSLog(@"argv[0] is %@",name);
-    NSString* val = FREObject2String(argv[1]);
+    NSString* val = DLAFREObject2String(argv[1]);
     NSLog(@"argv[1] is %@",val);
     
     if (parms == nil) {
@@ -161,10 +169,10 @@ FREObject sendEndSession(FREContext ctx, void* funcData, uint32_t argc, FREObjec
  */
 FREObject sendEvent(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 {
-    NSString* _eventName = FREObject2String(argv[0]);
-    NSString* _action    = FREObject2String(argv[1]);
-    NSString* _label     = FREObject2String(argv[2]);
-    int32_t   _value     = FREObject2Int(argv[3]);
+    NSString* _eventName = DLAFREObject2String(argv[0]);
+    NSString* _action    = DLAFREObject2String(argv[1]);
+    NSString* _label     = DLAFREObject2String(argv[2]);
+    int32_t   _value     = DLAFREObject2Int(argv[3]);
     
     [ForceAnalyticsManager sendEvent:_eventName action:_action label:_label value:_value];
     return NULL;
@@ -175,15 +183,15 @@ FREObject sendEvent(FREContext ctx, void* funcData, uint32_t argc, FREObject arg
  */
 FREObject sendEventPurchase(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 {
-    NSString* _eventName = FREObject2String(argv[0]);
-    NSString* _action    = FREObject2String(argv[1]);
-    NSString* _label     = FREObject2String(argv[2]);
-    NSString* _orderID   = FREObject2String(argv[3]);
-    NSString* _sku       = FREObject2String(argv[4]);
-    NSString* _itemName  = FREObject2String(argv[5]);
-    double    _price     = FREObject2Double(argv[6]);
-    int32_t   _quantity  = FREObject2Int(argv[7]);
-    NSString* _currency  = FREObject2String(argv[8]);
+    NSString* _eventName = DLAFREObject2String(argv[0]);
+    NSString* _action    = DLAFREObject2String(argv[1]);
+    NSString* _label     = DLAFREObject2String(argv[2]);
+    NSString* _orderID   = DLAFREObject2String(argv[3]);
+    NSString* _sku       = DLAFREObject2String(argv[4]);
+    NSString* _itemName  = DLAFREObject2String(argv[5]);
+    double    _price     = DLAFREObject2Double(argv[6]);
+    int32_t   _quantity  = DLAFREObject2Int(argv[7]);
+    NSString* _currency  = DLAFREObject2String(argv[8]);
     
     [ForceAnalyticsManager sendEvent:_eventName action:_action label:_label orderID:_orderID sku:_sku itemName:_itemName price:_price quantity:_quantity currency:_currency];
     return NULL;
@@ -212,8 +220,8 @@ FREObject DLAShowBanner(FREContext ctx, void* funcData, uint32_t argc, FREObject
     NSLog(@"start showBanner");
     NSLog(@"argc %d",argc);
     DLABannerView* bannerViewImp = (__bridge DLABannerView*) argv[0];
-    NSString* placementId = FREObject2String(argv[1]);
-    DLBannerPosition position = FREObject2Int(argv[2]);
+    NSString* placementId = DLAFREObject2String(argv[1]);
+    DLBannerPosition position = DLAFREObject2Int(argv[2]);
     
     if (bannerViewImp) {
         bannerViewImp.bannerView.placementId = placementId;
@@ -250,7 +258,7 @@ FREObject DLAShowInterstitial(FREContext ctx, void* funcData, uint32_t argc, FRE
     NSLog(@"start show");
     NSLog(@"argc %d",argc);
     DLAInterstitial* interstitialImp = (__bridge DLAInterstitial*) argv[0];
-    NSString* placementId = FREObject2String(argv[1]);
+    NSString* placementId = DLAFREObject2String(argv[1]);
     
     [DLInterstitialViewController showInterstitial:placementId
                                       InController:DLAGetRootViewController()
@@ -259,6 +267,46 @@ FREObject DLAShowInterstitial(FREContext ctx, void* funcData, uint32_t argc, FRE
     return NULL;
 }
 
+const uint8_t* EVENT_CODE_AD_OPERATION_SUCCESS = (uint8_t*)"SUCCESS";
+const uint8_t* EVENT_CODE_AD_OPERATION_FAILED = (uint8_t*)"FAILED";
+
+FREObject DLACreateAdOperation(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    DLAdOperation* operation = [DLAdOperation new];
+    return (__bridge_retained FREObject)operation;
+}
+
+FREObject DLARequestAdInfo(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    DLAdOperation* operation = (__bridge DLAdOperation*)argv[0];
+    NSString* placementId = DLAFREObject2String(argv[1]);
+
+    [operation requestAdInfo:placementId success:^(NSDictionary * _Nonnull receiveObject) {
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:receiveObject options:0 error:nil];
+        const uint8_t* level = (uint8_t*)[[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding]UTF8String];
+        FREDispatchStatusEventAsync(ctx, EVENT_CODE_AD_OPERATION_SUCCESS, level);
+    } failure:^{
+        FREDispatchStatusEventAsync(ctx, EVENT_CODE_AD_OPERATION_FAILED, (uint8_t*)"");
+    }];
+    return NULL;
+}
+
+FREObject DLASendImp(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    NSString* placementId = DLAFREObject2String(argv[0]);
+    BOOL status = DLAFREObject2Bool(argv[1]);
+    NSString* sessionId = DLAFREObject2String(argv[2]);
+
+    [DLAdOperation sendImp:placementId impStatus:status sessionId:sessionId];
+
+    return NULL;
+}
+
+FREObject DLASendClick(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    NSString* placementId = DLAFREObject2String(argv[0]);
+    NSString* sessionId = DLAFREObject2String(argv[1]);
+
+    [DLAdOperation sendClick:placementId sessionId:sessionId];
+
+    return NULL;
+}
 
 # pragma mark - Air Context
 void FoxContextFinalizer(FREContext ctx) {
@@ -354,6 +402,27 @@ void FoxContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx
             (const uint8_t*) "showInterstitial",
             NULL,
             &DLAShowInterstitial
+        },
+        // AdOperation
+        {
+            (const uint8_t*) "createAdOperation",
+            NULL,
+            &DLACreateAdOperation
+        },
+        {
+            (const uint8_t*) "requestAdInfo",
+            NULL,
+            &DLARequestAdInfo
+        },
+        {
+            (const uint8_t*) "sendImp",
+            NULL,
+            &DLASendImp
+        },
+        {
+            (const uint8_t*) "sendClick",
+            NULL,
+            &DLASendClick
         },
     };
     

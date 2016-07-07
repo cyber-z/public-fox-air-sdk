@@ -4,8 +4,8 @@
 @protocol DLAdStateDelegate<NSObject>
 
 @optional
--(void) onAdSuccess:(UIView*) view;
--(void) onAdFailed:(UIView*) view;
+-(void) onAdSuccess:(UIView*)view;
+-(void) onAdFailed:(UIView*)view;
 
 @end
 
@@ -19,5 +19,4 @@
 -(void) onAdExit;
 
 @end
-
 

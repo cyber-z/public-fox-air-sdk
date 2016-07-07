@@ -4,7 +4,7 @@ CZ_BUILD_WORKSPACE=${PROJECT_DIR}/../FoxANE.xcworkspace
 CZ_BUILD_PROJ=FoxAirWrapper.xcodeproj
 CZ_BUILD_SCHEME=FoxAirWrapper
 
-export UNIVERSAL_DIR=${PROJECT_DIR}/build/${CONFIGURATION}/${PRODUCT_NAME}
+export UNIVERSAL_DIR=${PROJECT_DIR}/build/${CONFIGURATION}/${PRODUCT_NAME}_${CURRENT_PROJECT_VERSION}
 rm -rf $UNIVERSAL_DIR
 mkdir -p $UNIVERSAL_DIR
 
@@ -33,7 +33,7 @@ xcodebuild \
 if [ $? != 0 ]; then echo "=> Bad" && exit 1; else echo "=> OK"; fi
 
 # combine lib files for various platforms into one
-echo "${PRODUCT_NAME} compile for ${CONFIGURATION}"
+echo "${PRODUCT_NAME}_${CURRENT_PROJECT_VERSION} compile for ${CONFIGURATION}"
 
 CZ_BUILD_ARCHIVE_DIR=${BUILD_DIR}/../Intermediates/ArchiveIntermediates/${PRODUCT_NAME}/BuildProductsPath
 
@@ -41,4 +41,3 @@ lipo -create \
 "${CZ_BUILD_ARCHIVE_DIR}/${CONFIGURATION}-iphoneos/lib${PRODUCT_NAME}.a" \
 "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PRODUCT_NAME}.a" \
 -output "${UNIVERSAL_DIR}/lib${PRODUCT_NAME}.a"
-
