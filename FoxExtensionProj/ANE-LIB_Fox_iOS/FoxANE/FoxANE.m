@@ -46,10 +46,6 @@ BOOL DLAFREObject2Bool(FREObject arg)
     return boolValue;
 }
 
-static UIViewController* DLAGetRootViewController() {
-    return [UIApplication sharedApplication].keyWindow.rootViewController;
-}
-
 #pragma mark - AdManager
 
 FREObject sendConversion(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
