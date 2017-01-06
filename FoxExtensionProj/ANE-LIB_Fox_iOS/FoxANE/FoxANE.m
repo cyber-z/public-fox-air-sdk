@@ -12,9 +12,6 @@
 #import "AdManager.h"
 #import "Ltv.h"
 #import "AnalyticsManager.h"
-#import "DLABannerView.h"
-#import "DLAInterstitial.h"
-#import "DLAdOperation.h"
 
 #pragma mark - utility
 static NSMutableDictionary* parms = nil;
@@ -197,117 +194,6 @@ FREObject sendEventPurchase(FREContext ctx, void* funcData, uint32_t argc, FREOb
     return NULL;
 }
 
-# pragma mark - Dahlia
-
-FREObject DLACreateBannerView(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    
-    NSLog(@"start createBannerView");
-    NSLog(@"DLACreateBannerView context %p", ctx);
-    
-    DLABannerView* bannerViewImp = [DLABannerView new];
-    bannerViewImp.ctx = ctx;
-    
-    DLBannerView* bannerView = [DLBannerView new];
-    bannerView.adStateDelegate = bannerViewImp;
-    
-    bannerViewImp.bannerView = bannerView;
-    return (__bridge_retained FREObject) bannerViewImp;
-}
-
-
-FREObject DLAShowBanner(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    
-    NSLog(@"start showBanner");
-    NSLog(@"argc %d",argc);
-    DLABannerView* bannerViewImp = (__bridge DLABannerView*) argv[0];
-    NSString* placementId = DLAFREObject2String(argv[1]);
-    DLBannerPosition position = DLAFREObject2Int(argv[2]);
-    
-    if (bannerViewImp) {
-        bannerViewImp.bannerView.placementId = placementId;
-        bannerViewImp.bannerView.position = position;
-        [DLAGetRootViewController().view addSubview:bannerViewImp.bannerView];
-        [bannerViewImp.bannerView show];
-    }
-    
-    return NULL;
-}
-
-FREObject DLAHideBanner(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    NSLog(@"DLAHideBanner");
-    
-    DLABannerView* bannerViewImp = (__bridge DLABannerView*) argv[0];
-    [bannerViewImp.bannerView dismissView];
-    
-    return NULL;
-}
-
-
-FREObject DLACreateInterstitial(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    
-    NSLog(@"start createInterstitial");
-    DLAInterstitial* interstitialImp = [DLAInterstitial new];
-    interstitialImp.ctx = ctx;
-    
-    return (__bridge_retained FREObject) interstitialImp;
-}
-
-
-FREObject DLAShowInterstitial(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    
-    NSLog(@"start show");
-    NSLog(@"argc %d",argc);
-    DLAInterstitial* interstitialImp = (__bridge DLAInterstitial*) argv[0];
-    NSString* placementId = DLAFREObject2String(argv[1]);
-    
-    [DLInterstitialViewController showInterstitial:placementId
-                                      InController:DLAGetRootViewController()
-                                      WithDelegate:interstitialImp];
-    
-    return NULL;
-}
-
-const uint8_t* EVENT_CODE_AD_OPERATION_SUCCESS = (uint8_t*)"SUCCESS";
-const uint8_t* EVENT_CODE_AD_OPERATION_FAILED = (uint8_t*)"FAILED";
-
-FREObject DLACreateAdOperation(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    DLAdOperation* operation = [DLAdOperation new];
-    return (__bridge_retained FREObject)operation;
-}
-
-FREObject DLARequestAdInfo(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    DLAdOperation* operation = (__bridge DLAdOperation*)argv[0];
-    NSString* placementId = DLAFREObject2String(argv[1]);
-
-    [operation requestAdInfo:placementId success:^(NSDictionary * _Nonnull receiveObject) {
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:receiveObject options:0 error:nil];
-        const uint8_t* level = (uint8_t*)[[[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding]UTF8String];
-        FREDispatchStatusEventAsync(ctx, EVENT_CODE_AD_OPERATION_SUCCESS, level);
-    } failure:^{
-        FREDispatchStatusEventAsync(ctx, EVENT_CODE_AD_OPERATION_FAILED, (uint8_t*)"");
-    }];
-    return NULL;
-}
-
-FREObject DLASendImp(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    NSString* placementId = DLAFREObject2String(argv[0]);
-    BOOL status = DLAFREObject2Bool(argv[1]);
-    NSString* sessionId = DLAFREObject2String(argv[2]);
-
-    [DLAdOperation sendImp:placementId impStatus:status sessionId:sessionId];
-
-    return NULL;
-}
-
-FREObject DLASendClick(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    NSString* placementId = DLAFREObject2String(argv[0]);
-    NSString* sessionId = DLAFREObject2String(argv[1]);
-
-    [DLAdOperation sendClick:placementId sessionId:sessionId];
-
-    return NULL;
-}
-
 # pragma mark - Air Context
 void FoxContextFinalizer(FREContext ctx) {
     
@@ -375,54 +261,6 @@ void FoxContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx
             (const uint8_t*) "sendEventPurchase",
             NULL,
             &sendEventPurchase
-        },
-        // Banner
-        {
-            (const uint8_t*) "createBannerView",
-            NULL,
-            &DLACreateBannerView
-        },
-        {
-            (const uint8_t*) "showBanner",
-            NULL,
-            &DLAShowBanner
-        },
-        {
-            (const uint8_t*) "hideBanner",
-            NULL,
-            &DLAHideBanner
-        },
-        // Interstitial
-        {
-            (const uint8_t*) "createInterstitial",
-            NULL,
-            &DLACreateInterstitial
-        },
-        {
-            (const uint8_t*) "showInterstitial",
-            NULL,
-            &DLAShowInterstitial
-        },
-        // AdOperation
-        {
-            (const uint8_t*) "createAdOperation",
-            NULL,
-            &DLACreateAdOperation
-        },
-        {
-            (const uint8_t*) "requestAdInfo",
-            NULL,
-            &DLARequestAdInfo
-        },
-        {
-            (const uint8_t*) "sendImp",
-            NULL,
-            &DLASendImp
-        },
-        {
-            (const uint8_t*) "sendClick",
-            NULL,
-            &DLASendClick
         },
     };
     

@@ -46,15 +46,10 @@
 		0D736A3B1680151D003D03E7 /* FoxANE-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoxANE-Prefix.pch"; sourceTree = "<group>"; };
 		0D736A3C1680151D003D03E7 /* FoxANE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoxANE.h; sourceTree = "<group>"; };
 		0D736A3E1680151D003D03E7 /* FoxANE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoxANE.m; sourceTree = "<group>"; };
-		B873EE881D2BCB06006B302F /* DLAdOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLAdOperation.h; sourceTree = "<group>"; };
 		B87CF0B21C63216C008BA4F6 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		B87CF0B41C63216C008BA4F6 /* AdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
 		B87CF0B51C63216C008BA4F6 /* AnalyticsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyticsManager.h; sourceTree = "<group>"; };
-		B87CF0B61C63216C008BA4F6 /* DLAdStateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLAdStateDelegate.h; sourceTree = "<group>"; };
-		B87CF0B71C63216C008BA4F6 /* DLBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLBannerView.h; sourceTree = "<group>"; };
-		B87CF0B81C63216C008BA4F6 /* DLInterstitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLInterstitialViewController.h; sourceTree = "<group>"; };
 		B87CF0B91C63216C008BA4F6 /* Ltv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ltv.h; sourceTree = "<group>"; };
-		B87CF0BA1C63216C008BA4F6 /* Notify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notify.h; sourceTree = "<group>"; };
 		B87CF0BB1C633186008BA4F6 /* make.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,14 +115,9 @@
 		B87CF0B31C63216C008BA4F6 /* FOX_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				B873EE881D2BCB06006B302F /* DLAdOperation.h */,
 				B87CF0B41C63216C008BA4F6 /* AdManager.h */,
 				B87CF0B51C63216C008BA4F6 /* AnalyticsManager.h */,
-				B87CF0B61C63216C008BA4F6 /* DLAdStateDelegate.h */,
-				B87CF0B71C63216C008BA4F6 /* DLBannerView.h */,
-				B87CF0B81C63216C008BA4F6 /* DLInterstitialViewController.h */,
 				B87CF0B91C63216C008BA4F6 /* Ltv.h */,
-				B87CF0BA1C63216C008BA4F6 /* Notify.h */,
 			);
 			path = FOX_iOS_SDK;
 			sourceTree = "<group>";

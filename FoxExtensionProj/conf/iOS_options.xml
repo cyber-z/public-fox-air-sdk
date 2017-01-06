@@ -13,6 +13,5 @@
 	<packagedDependencies>
 		<packagedDependency>libFoxANE.a</packagedDependency>
 		<packagedDependency>libFoxSdk.a</packagedDependency>
-		<packagedDependency>libFoxAirWrapper.a</packagedDependency>
 	</packagedDependencies>
 </platform>
