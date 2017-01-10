@@ -5,8 +5,8 @@
         <platform name="Android-ARM">
             <applicationDeployment> 
                 <nativeLibrary>AppAdForce.jar</nativeLibrary> 
-                <initializer>co.cyberz.dahlia.wrapper.ane.FoxTradeExtension</initializer> 
-                <finalizer>co.cyberz.dahlia.wrapper.ane.FoxTradeExtension</finalizer> 
+                <initializer>jp.appAdForce.android.ane.AppAdForceExtension</initializer> 
+                <finalizer>jp.appAdForce.android.ane.AppAdForceExtension</finalizer>
             </applicationDeployment> 
         </platform>
 		<platform name="iPhone-ARM">
