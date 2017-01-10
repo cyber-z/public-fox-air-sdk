@@ -17,10 +17,8 @@ Force Operation X (以下F.O.X)は、スマートフォンにおける広告効�
 * **[5. アクセス解析の実装](#tracking_analytics)**
 	* [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 * **[6. リエンゲージメント計測機能の実装](#tracking_reengagement)**
-* **[7. 広告配信機能](#fox_trade)**
-	* [広告配信機能の詳細](./doc/fox_trade/README.md)
-* **[8. 疎通テストの実施](#integration_test)**
-* **[9. 最後に必ずご確認ください](#trouble_shooting)**
+* **[7. 疎通テストの実施](#integration_test)**
+* **[8. 最後に必ずご確認ください](#trouble_shooting)**
 
 ### F.O.X SDKとは
 
@@ -37,10 +35,6 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 * **アクセス解析**
 
 自然流入と広告流入のインストール比較。アプリケーションの起動数やユニークユーザー数(DAU/MAU)。継続率等を計測することができます。
-
-* **広告配信**
-
-アプリ内に相互集客広告を表示させることができます。尚、広告表示が不要の場合には、本項目の実装を省略できます。
 
 <div id="general"></div>
 ## 1.	概要
@@ -401,57 +395,8 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 	・・・省略
 ```
 
-<div id="fox_trade"></div>
-## 7. 広告配信機能
-
-本機能を利用することで相互集客広告を表示させることができます。
-尚、広告表示が不要の場合には、本項目の実装を省略できます。
-表示する広告の種類は以下の２つとなります。
-
-* バナー広告
-* インタースティシャル広告
-
-### 7.1 バナー広告表示の実装
-
-バナー広告の表示対象となる画面にて以下のBannerインスタンスを生成し、loadメソッドを実装してください。
-
-```as3
-import co.cyberz.dahlia.Banner;
-
-private var banner:Banner;
-
-...
-
-Banner banner = new Banner();
-banner.show("広告表示ID", Banner.POSITION_TOP); // 画面上部に広告を表示
-```
-
-> showメソッドの第一引数には管理者より発行される広告表示IDを指定してください。
-
-> showメソッドの第二引数にはバナー広告の表示位置オプションを指定します。<br>
-　`Banner.POSITION_TOP` : 画面上部の中心に配置<br>
-　`Banner.POSITION_BOTTOM` : 画面下部部の中心に配置
-
-
-### 7.2 インタースティシャル広告表示の実装
-
-インタースティシャル広告の表示対象となる画面にてInterstitialインスタンスを生成し、showメソッドを実装してください。
-
-```as3
-import co.cyberz.dahlia.Interstitial;
-
-...
-
-var interstitial:Interstitial = new Interstitial();
-interstitial.show("広告表示ID");
-```
-
-> showメソッドの引数には管理者より発行される広告表示IDを指定してください。
-
-[広告配信機能の詳細](./doc/fox_trade/README.md)
-
 <div id="integration_test"></div>
-## 8. 疎通テストの実施
+## 7. 疎通テストの実施
 
 マーケットへの申請までに、Force Operation Xを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
 
@@ -459,7 +404,7 @@ interstitial.show("広告表示ID");
 
 成果のための通信は、起動後に一度のみ行わるため、二回目以降の起動では通信が発生しません。続けて効果測定テストを行いたい場合には、アプリケーションをアンインストールし、再度インストールから行ってください。
 
-### 8.1 テストの手順
+### 7.1 テストの手順
 
 SDKが正常に導入されていることを確認するためのテスト手順は以下の通りです。
 ProGuardを掛けてリリースを行う場合、必ずProGuardを掛けた状態でテストの実施をお願い致します。
@@ -484,7 +429,7 @@ ProGuardを掛けてリリースを行う場合、必ずProGuardを掛けた状�
 
 
 <div id="trouble_shooting"></div>
-## 9. 最後に必ずご確認ください（これまで発生したトラブル集）
+## 8. 最後に必ずご確認ください（これまで発生したトラブル集）
 
 #### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
 

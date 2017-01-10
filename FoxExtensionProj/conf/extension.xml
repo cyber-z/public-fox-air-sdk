@@ -1,12 +1,12 @@
-<extension xmlns="http://ns.adobe.com/air/extension/20.0">
+<extension xmlns="http://ns.adobe.com/air/extension/21.0">
     <id>jp.appAdForce</id>
     <versionNumber>1.0.0</versionNumber>
     <platforms>
         <platform name="Android-ARM">
             <applicationDeployment> 
                 <nativeLibrary>AppAdForce.jar</nativeLibrary> 
-                <initializer>co.cyberz.dahlia.wrapper.ane.FoxTradeExtension</initializer> 
-                <finalizer>co.cyberz.dahlia.wrapper.ane.FoxTradeExtension</finalizer> 
+                <initializer>jp.appAdForce.android.ane.AppAdForceExtension</initializer> 
+                <finalizer>jp.appAdForce.android.ane.AppAdForceExtension</finalizer>
             </applicationDeployment> 
         </platform>
 		<platform name="iPhone-ARM">

@@ -4,7 +4,7 @@ echo "${BR}"
 echo '--- Create FoxSDK Air Extensionmake ---'
 
 #---initailize---
-DEFAULT_SDK_VERSION="3.2.0"
+DEFAULT_SDK_VERSION="3.5.0"
 ANE_LIB_NAME="FoxExtension.ane"
 BR="\n"
 #-Download to
@@ -50,7 +50,7 @@ else
 fi
 
 echo "${BR}"
-echo '> Please input FOX iOS SDK "Version" that has ANE (default 3.2.0): '
+echo "> Please input FOX iOS SDK \"Version\" that has ANE (default ${DEFAULT_SDK_VERSION}): "
 read IOS_VERSION
 if test ${#IOS_VERSION} -eq 0 ;then
 	IOS_VERSION=$DEFAULT_SDK_VERSION
@@ -66,7 +66,7 @@ if [ ${IOS_VERSION} = "$null" ]; then
 fi
 
 echo "${BR}"
-echo '> Please input FOX Android SDK "Version" that has ANE (default 3.2.0): '
+echo "> Please input FOX Android SDK \"Version\" that has ANE (default ${DEFAULT_SDK_VERSION}): "
 read ANDROID_VERSION
 if test ${#ANDROID_VERSION} -eq 0 ;then
 	ANDROID_VERSION=$DEFAULT_SDK_VERSION
@@ -115,7 +115,7 @@ fi
 if test -e $ANDROID_LIB/AppAdForce.jar ;then
 	rm -f $ANDROID_LIB/AppAdForce.jar
 fi
-cp $TMP/FOX_Android_SDK_${ANDROID_VERSION}/libs/AppAdForce_${ANDROID_VERSION}.jar $ANDROID_LIB/AppAdForce.jar
+cp $TMP/FOX_Android_SDK_${ANDROID_VERSION}/libs/FOX_Android_SDK_${ANDROID_VERSION}.jar $ANDROID_LIB/AppAdForce.jar
 
 #Set iOS SDK
 IPHONE_LIB="platform/iphone"
@@ -132,17 +132,6 @@ xcodebuild \
 cp -f ./ANE-LIB_Fox_iOS/build/${CONFIGURATION}/FoxANE_${IOS_VERSION}/libFoxANE.a \
   $IPHONE_LIB/libFoxANE.a
 
-echo "build wrapper for DAHLIA"
-DAHLIA_ANE_BUILD_SCHEME=FoxAirWrapper
-xcodebuild \
-	-workspace $FOX_ANE_BUILD_WORKSPACE \
-	-scheme FoxAirWrapper-Make-${CONFIGURATION} \
-	-sdk iphoneos \
-	-configuration $CONFIGURATION \
-	build
-cp -f ./ANE-LIB_Fox_iOS/FoxAirWrapper/build/${CONFIGURATION}/FoxAirWrapper_${IOS_VERSION}/libFoxAirWrapper.a \
-  $IPHONE_LIB/libFoxAirWrapper.a
-
 if [ " $CONFIGURATION" == " Release" ];then
 	#BUILD_IOS=$HOME/tmp/build/air/ios
 	BUILD_IOS=$TMP/ios
@@ -154,7 +143,7 @@ if [ " $CONFIGURATION" == " Release" ];then
 		echo "${BR}"
 		exit 1
 	fi
-    cp -f $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}/libFoxSdk.a $IPHONE_LIB/libFoxSdk.a
+    cp -f $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}/libAppAdForce.a $IPHONE_LIB/libFoxSdk.a
 fi
 
 echo "Extract library.swf"
@@ -196,7 +185,6 @@ rm ./bin/catalog.xml
 rm ./bin/FoxExtensionProj.zip
 rm -r TMP
 rm -r ./ANE-LIB_Fox_iOS/build
-rm -r ./ANE-LIB_Fox_iOS/FoxAirWrapper/build
 rm -r ./platform
 
 echo '\033[1;32m=== BUILD COMPLETED! ===\033[0;39m'
