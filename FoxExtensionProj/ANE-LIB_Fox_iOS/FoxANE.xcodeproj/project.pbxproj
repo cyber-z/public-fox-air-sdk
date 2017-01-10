@@ -46,15 +46,10 @@
 		0D736A3B1680151D003D03E7 /* FoxANE-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FoxANE-Prefix.pch"; sourceTree = "<group>"; };
 		0D736A3C1680151D003D03E7 /* FoxANE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoxANE.h; sourceTree = "<group>"; };
 		0D736A3E1680151D003D03E7 /* FoxANE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoxANE.m; sourceTree = "<group>"; };
-		B873EE881D2BCB06006B302F /* DLAdOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLAdOperation.h; sourceTree = "<group>"; };
 		B87CF0B21C63216C008BA4F6 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		B87CF0B41C63216C008BA4F6 /* AdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
 		B87CF0B51C63216C008BA4F6 /* AnalyticsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyticsManager.h; sourceTree = "<group>"; };
-		B87CF0B61C63216C008BA4F6 /* DLAdStateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLAdStateDelegate.h; sourceTree = "<group>"; };
-		B87CF0B71C63216C008BA4F6 /* DLBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLBannerView.h; sourceTree = "<group>"; };
-		B87CF0B81C63216C008BA4F6 /* DLInterstitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLInterstitialViewController.h; sourceTree = "<group>"; };
 		B87CF0B91C63216C008BA4F6 /* Ltv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ltv.h; sourceTree = "<group>"; };
-		B87CF0BA1C63216C008BA4F6 /* Notify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notify.h; sourceTree = "<group>"; };
 		B87CF0BB1C633186008BA4F6 /* make.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,14 +115,9 @@
 		B87CF0B31C63216C008BA4F6 /* FOX_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				B873EE881D2BCB06006B302F /* DLAdOperation.h */,
 				B87CF0B41C63216C008BA4F6 /* AdManager.h */,
 				B87CF0B51C63216C008BA4F6 /* AnalyticsManager.h */,
-				B87CF0B61C63216C008BA4F6 /* DLAdStateDelegate.h */,
-				B87CF0B71C63216C008BA4F6 /* DLBannerView.h */,
-				B87CF0B81C63216C008BA4F6 /* DLInterstitialViewController.h */,
 				B87CF0B91C63216C008BA4F6 /* Ltv.h */,
-				B87CF0BA1C63216C008BA4F6 /* Notify.h */,
 			);
 			path = FOX_iOS_SDK;
 			sourceTree = "<group>";
@@ -158,7 +148,7 @@
 		0D736A2B1680151D003D03E7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = cyberz0021;
 				TargetAttributes = {
 					B87CF0C11C63399C008BA4F6 = {
@@ -218,21 +208,33 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3.2.0;
+				CURRENT_PROJECT_VERSION = 3.5.0;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -246,13 +248,25 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 3.2.0;
+				CURRENT_PROJECT_VERSION = 3.5.0;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<platform xmlns="http://ns.adobe.com/air/extension/20.0">
+<platform xmlns="http://ns.adobe.com/air/extension/21.0">
 	<sdkVersion>9.2</sdkVersion>
 	<linkerOptions>
 		<option>-ios_version_min 7.0</option>
@@ -13,6 +13,5 @@
 	<packagedDependencies>
 		<packagedDependency>libFoxANE.a</packagedDependency>
 		<packagedDependency>libFoxSdk.a</packagedDependency>
-		<packagedDependency>libFoxAirWrapper.a</packagedDependency>
 	</packagedDependencies>
 </platform>
