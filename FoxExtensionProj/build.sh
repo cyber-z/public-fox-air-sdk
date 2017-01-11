@@ -175,7 +175,7 @@ mkdir -m 755 output
   -platform default \
   -C ${DEFAULT_LIB} .
 
-if [ $? != 0 ]; then echo "\033[1;32m=== BUILD FAILED! ===\033[0;39m" && exit 1; fi
+if [ $? != 0 ]; then echo "\033[0;31m=== BUILD FAILED! ===\033[0;39m" && exit 1; fi
 
 if test -e "./output/${ANE_LIB_NAME}" ;then
 	echo "Created ${ANE_LIB_NAME} to output"
