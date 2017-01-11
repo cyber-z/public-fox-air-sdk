@@ -4,7 +4,7 @@ echo "${BR}"
 echo '--- Create FoxSDK Air Extensionmake ---'
 
 #---initailize---
-DEFAULT_SDK_VERSION="3.5.0"
+DEFAULT_SDK_VERSION="3.3.0"
 ANE_LIB_NAME="FoxExtension.ane"
 BR="\n"
 #-Download to
@@ -128,7 +128,8 @@ xcodebuild \
 	-scheme FoxANE-Make-${CONFIGURATION} \
 	-sdk iphoneos \
 	-configuration $CONFIGURATION \
-	build
+	build \
+	CURRENT_PROJECT_VERSION=$IOS_VERSION
 cp -f ./ANE-LIB_Fox_iOS/build/${CONFIGURATION}/FoxANE_${IOS_VERSION}/libFoxANE.a \
   $IPHONE_LIB/libFoxANE.a
 
@@ -173,6 +174,8 @@ mkdir -m 755 output
   -C ${IPHONE_LIB} . \
   -platform default \
   -C ${DEFAULT_LIB} .
+
+if [ $? != 0 ]; then echo "\033[0;31m=== BUILD FAILED! ===\033[0;39m" && exit 1; fi
 
 if test -e "./output/${ANE_LIB_NAME}" ;then
 	echo "Created ${ANE_LIB_NAME} to output"
