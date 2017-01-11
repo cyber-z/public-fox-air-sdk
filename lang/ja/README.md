@@ -163,10 +163,11 @@ Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devne
 					ad.sendConversionWithStartPage("http://○○○○");
 				}
 ```
+> ※ iOS9以降において、`sendConversionWithStartPage`メソッドを実行した際に起動させるSFSafariViewControllerの制御は以下の[`sendReengagementConversion`メソッド](#tracking_reengagement)内部で行っています。`sendConversionWithStartPage`を実行する際は、必ずセットで[リエンゲージメント計測](#tracking_reengagement)の実装も行ってください。
 
-> sendConversionWithStartPage関数の引数はURLになります。
+> ※ sendConversionWithStartPage関数の引数はURLになります。
 アプリ起動時に表示させたいページのURLをご指定ください。<br>
-> ※ページのご用意が無い場合は、ページの作成をお願い致します。
+> ※ ページのご用意が無い場合は、ページの作成をお願い致します。
 
 ブラウザに表示するページが特に無い
 場合は、以下のように文字列`”default”`を渡してください。
@@ -345,6 +346,8 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 ## 6. リエンゲージメント計測機能の実装
 
 リエンゲージメント広告経由での起動を計測するための実装を説明します。
+
+> ※ iOS9以降において、`sendConversionWithStartPage`メソッドを実行した際に起動させるSFSafariViewControllerの制御は以下の`sendReengagementConversion`メソッド内部で行っています。`sendConversionWithStartPage`を実行する際は、必ずセットで以下の実装も行ってください。
 
 ### 6.1 リエンゲージメント計測API
 
