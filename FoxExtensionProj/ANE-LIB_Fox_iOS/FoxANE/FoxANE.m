@@ -46,6 +46,13 @@ BOOL DLAFREObject2Bool(FREObject arg)
     return boolValue;
 }
 
+FREObject CYZString2FERObject(NSString* str) {
+    const char *value = [str UTF8String];
+    FREObject obj;
+    FRENewObjectFromUTF8((uint32_t)strlen(value) + 1, (const uint8_t*)value, &obj);
+    return obj;
+}
+
 #pragma mark - AdManager
 
 FREObject sendConversion(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
@@ -166,8 +173,14 @@ FREObject sendEvent(FREContext ctx, void* funcData, uint32_t argc, FREObject arg
     NSString* _action    = DLAFREObject2String(argv[1]);
     NSString* _label     = DLAFREObject2String(argv[2]);
     int32_t   _value     = DLAFREObject2Int(argv[3]);
+    NSString* eventInfoStr = DLAFREObject2String(argv[4]);
+
+    NSDictionary* eventInfo = nil;
+    if (eventInfoStr.length > 0) {
+        eventInfo = [NSJSONSerialization JSONObjectWithData:[eventInfoStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+    }
     
-    [ForceAnalyticsManager sendEvent:_eventName action:_action label:_label value:_value];
+    [ForceAnalyticsManager sendEvent:_eventName action:_action label:_label value:_value eventInfo:eventInfo];
     return NULL;
 }
 
@@ -185,10 +198,44 @@ FREObject sendEventPurchase(FREContext ctx, void* funcData, uint32_t argc, FREOb
     double    _price     = DLAFREObject2Double(argv[6]);
     int32_t   _quantity  = DLAFREObject2Int(argv[7]);
     NSString* _currency  = DLAFREObject2String(argv[8]);
-    
-    [ForceAnalyticsManager sendEvent:_eventName action:_action label:_label orderID:_orderID sku:_sku itemName:_itemName price:_price quantity:_quantity currency:_currency];
+
+    NSString* eventInfoStr = DLAFREObject2String(argv[9]);
+    NSDictionary* eventInfo = nil;
+    if (eventInfoStr.length > 0) {
+        eventInfo = [NSJSONSerialization JSONObjectWithData:[eventInfoStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+    }
+
+    [ForceAnalyticsManager sendEvent:_eventName action:_action label:_label orderID:_orderID sku:_sku itemName:_itemName price:_price quantity:_quantity currency:_currency eventInfo:eventInfo];
     return NULL;
 }
+
+FREObject setUserInfo(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    NSString* userInfoStr = DLAFREObject2String(argv[0]);
+
+    NSDictionary* userInfo = nil;
+    if (userInfoStr.length > 0) {
+        userInfo = [NSJSONSerialization JSONObjectWithData:[userInfoStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+    }
+
+    [ForceAnalyticsManager setUserInfo:userInfo];
+    return NULL;
+}
+
+FREObject getUserInfo(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    NSDictionary* userInfo = [ForceAnalyticsManager getUserInfo];
+    if (userInfo) {
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error:nil];
+        if (jsonData) {
+            NSString* userInfoStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            if (userInfoStr && userInfoStr.length > 0) {
+                return CYZString2FERObject(userInfoStr);
+            }
+        }
+    }
+    return NULL;
+}
+
+
 
 # pragma mark - Air Context
 void FoxContextFinalizer(FREContext ctx) {
@@ -258,6 +305,17 @@ void FoxContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx
             NULL,
             &sendEventPurchase
         },
+        {
+            (const uint8_t*) "setUserInfo",
+            NULL,
+            &setUserInfo
+        },
+        {
+            (const uint8_t*) "getUserInfo",
+            NULL,
+            &getUserInfo
+        },
+
     };
     
     *numFunctionsToTest = sizeof(funcList) / sizeof(FRENamedFunction);
