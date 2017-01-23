@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 echo "${BR}"
 echo '--- Create FoxSDK Air Extensionmake ---'
@@ -9,22 +9,22 @@ ANE_LIB_NAME="FoxExtension.ane"
 BR="\n"
 #-Download to
 TMP="./tmp"
-# if test -e $TMP ;then
-# 	rm -rf $TMP
-# 	mkdir -m 755 $TMP
-# else
-# 	mkdir -m 755 $TMP
-# fi
+if test -e $TMP ;then
+	rm -rf $TMP
+	mkdir -m 755 $TMP
+else
+	mkdir -m 755 $TMP
+fi
 #-Build to
 rm -r ./output
 PLATFORM="./platform"
-# if test -e $PLATFORM ;then
-# 	rm -rf $PLATFORM
-# fi
-# mkdir -m 755 $PLATFORM
-# mkdir -m 755 $PLATFORM/android
-# mkdir -m 755 $PLATFORM/iphone
-# mkdir -m 755 $PLATFORM/default
+if test -e $PLATFORM ;then
+	rm -rf $PLATFORM
+fi
+mkdir -m 755 $PLATFORM
+mkdir -m 755 $PLATFORM/android
+mkdir -m 755 $PLATFORM/iphone
+mkdir -m 755 $PLATFORM/default
 
 if test -e "bin/FoxExtensionProj.swc" ;then
 	echo ""
@@ -65,10 +65,6 @@ if [ ${IOS_VERSION} = "$null" ]; then
 	exit 1
 fi
 
-ANDROID_SKIP=1
-ANDROID_LIB="platform/android"
-ANDROID_OPTION="android_options_withoutGPS.xml"
-if [ ANDROID_SKIP == 0]; then
 echo "${BR}"
 echo "> Please input FOX Android SDK \"Version\" that has ANE (default ${DEFAULT_SDK_VERSION}): "
 read ANDROID_VERSION
@@ -121,8 +117,6 @@ if test -e $ANDROID_LIB/AppAdForce.jar ;then
 fi
 cp $TMP/FOX_Android_SDK_${ANDROID_VERSION}/libs/FOX_Android_SDK_${ANDROID_VERSION}.jar $ANDROID_LIB/AppAdForce.jar
 
-fi # ANDROID_SKIP
-
 #Set iOS SDK
 IPHONE_LIB="platform/iphone"
 FOX_ANE_BUILD_WORKSPACE=./ANE-LIB_Fox_iOS/FoxANE.xcworkspace
@@ -139,18 +133,19 @@ xcodebuild \
 cp -f ./ANE-LIB_Fox_iOS/build/${CONFIGURATION}/FoxANE_${IOS_VERSION}/libFoxANE.a \
   $IPHONE_LIB/libFoxANE.a
 
-# if [ " $CONFIGURATION" == " Release" ];then
-# 	BUILD_IOS=$TMP/ios
-# 	mkdir -p $BUILD_IOS
-#     curl -L -o $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}.zip https://github.com/cyber-z/public-fox-ios-sdk/releases/download/${IOS_VERSION}/FOX_iOS_SDK_${IOS_VERSION}.zip
-# 	    unzip -o $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}.zip -d $BUILD_IOS/
-# 	if [ $? != 0 ]; then
-# 		echo "\033[0;31mERROR : Download is failed. FOX_iOS_SDK_${IOS_VERSION}.zip is not found.\n        Please input exist version.\033[0;39m"
-# 		echo "${BR}"
-# 		exit 1
-# 	fi
-#     cp -f $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}/libAppAdForce.a $IPHONE_LIB/libFoxSdk.a
-# fi
+if [ " $CONFIGURATION" == " Release" ];then
+	#BUILD_IOS=$HOME/tmp/build/air/ios
+	BUILD_IOS=$TMP/ios
+	mkdir -p $BUILD_IOS
+    curl -L -o $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}.zip https://github.com/cyber-z/public-fox-ios-sdk/releases/download/${IOS_VERSION}/FOX_iOS_SDK_${IOS_VERSION}.zip
+	    unzip -o $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}.zip -d $BUILD_IOS/
+	if [ $? != 0 ]; then
+		echo "\033[0;31mERROR : Download is failed. FOX_iOS_SDK_${IOS_VERSION}.zip is not found.\n        Please input exist version.\033[0;39m"
+		echo "${BR}"
+		exit 1
+	fi
+    cp -f $BUILD_IOS/FOX_iOS_SDK_${IOS_VERSION}/libAppAdForce.a $IPHONE_LIB/libFoxSdk.a
+fi
 
 echo "Extract library.swf"
 DEFAULT_LIB="platform/default"
@@ -191,9 +186,9 @@ fi
 rm ./bin/library.swf
 rm ./bin/catalog.xml
 rm ./bin/FoxExtensionProj.zip
-# rm -r $TMP
+rm -r TMP
 rm -r ./ANE-LIB_Fox_iOS/build
-# rm -r ./platform
+rm -r ./platform
 
 echo '\033[1;32m=== BUILD COMPLETED! ===\033[0;39m'
 echo "${BR}"
