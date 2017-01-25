@@ -4,7 +4,8 @@ echo "${BR}"
 echo '--- Create FoxSDK Air Extensionmake ---'
 
 #---initailize---
-DEFAULT_SDK_VERSION="3.3.0"
+DEFAULT_IOS_VERSION="3.5.0"
+DEFAULT_ANDROID_VERSION="3.5.1"
 ANE_LIB_NAME="FoxExtension.ane"
 BR="\n"
 #-Download to
@@ -37,7 +38,7 @@ else
 	exit 1
 fi
 
-echo '> Please input local "Flex SDK Home" path (e.g. /Applications/Adobe Flash Builder 4.7/sdks/4.6.0_air20): '
+echo '> Please enter local "Flex SDK Home" path (e.g. /Applications/Adobe Flash Builder 4.7/sdks/4.6.0_air24): '
 read FLEX_SDK
 if test -e "${FLEX_SDK}/bin/adt" ;then
 	echo "Using path : ${FLEX_SDK}"
@@ -50,10 +51,10 @@ else
 fi
 
 echo "${BR}"
-echo "> Please input FOX iOS SDK \"Version\" that has ANE (default ${DEFAULT_SDK_VERSION}): "
+echo "> Please enter FOX iOS SDK \"Version\" that has ANE (default ${DEFAULT_IOS_VERSION}): "
 read IOS_VERSION
 if test ${#IOS_VERSION} -eq 0 ;then
-	IOS_VERSION=$DEFAULT_SDK_VERSION
+	IOS_VERSION=$DEFAULT_IOS_VERSION
 	echo "${IOS_VERSION}"
 fi
 if [ ${IOS_VERSION} = "$null" ]; then
@@ -66,10 +67,10 @@ if [ ${IOS_VERSION} = "$null" ]; then
 fi
 
 echo "${BR}"
-echo "> Please input FOX Android SDK \"Version\" that has ANE (default ${DEFAULT_SDK_VERSION}): "
+echo "> Please enter FOX Android SDK \"Version\" that has ANE (default ${DEFAULT_ANDROID_VERSION}): "
 read ANDROID_VERSION
 if test ${#ANDROID_VERSION} -eq 0 ;then
-	ANDROID_VERSION=$DEFAULT_SDK_VERSION
+	ANDROID_VERSION=$DEFAULT_ANDROID_VERSION
 	echo "${ANDROID_VERSION}"
 fi
 if [ ${ANDROID_VERSION} = "$null" ]; then
@@ -105,6 +106,9 @@ fi
 
 #Set Android SDK
 ANDROID_LIB="platform/android"
+cp androidLibs/FOX_Android_SDK_ANE.jar $ANDROID_LIB/FOXAndroidSDKANE.jar
+
+##Download Android SDK core
 curl -L -o $TMP/FOX_Android_SDK_${ANDROID_VERSION}.zip https://github.com/cyber-z/public-fox-android-sdk/releases/download/${ANDROID_VERSION}/FOX_Android_SDK_${ANDROID_VERSION}.zip
 unzip -o $TMP/FOX_Android_SDK_${ANDROID_VERSION}.zip -d $TMP/
 if [ $? != 0 ]; then
@@ -186,7 +190,7 @@ fi
 rm ./bin/library.swf
 rm ./bin/catalog.xml
 rm ./bin/FoxExtensionProj.zip
-rm -r TMP
+rm -r $TMP
 rm -r ./ANE-LIB_Fox_iOS/build
 rm -r ./platform
 
