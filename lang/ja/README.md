@@ -50,7 +50,7 @@ SDKの実装後は、アプリケーションの動作及び効果測定の結�
 
 ### 1.1	Fox Air Extensionのビルド
 
-Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devnet/air/air-sdk-download.html)のバージョンと、弊社で提供するANEで指定しているバージョンに差異が出来ぬよう、ラッパープロジェクトを公開しています。
+Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devnet/air/air-sdk-download.html)のバージョンと、弊社で提供するANEの内部で定義しているバージョンに差異がある場合ビルド出来ないため、お客様の環境に適したANEファイルを生成できるようラッパープロジェクトを公開しています。
 お使いのAirSDKでビルドください。尚、ビルドの詳細は以下を参照ください。
 
 **[Fox Air Extensionのビルド詳細](./doc/build_extension/README.md)**
