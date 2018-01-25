@@ -37,6 +37,7 @@ F.O.X SDKをアプリケーションに導入することで、以下の機能�
 自然流入と広告流入のインストール比較。アプリケーションの起動数やユニークユーザー数(DAU/MAU)。継続率等を計測することができます。
 
 <div id="general"></div>
+
 ## 1.	概要
 
 本ドキュメントでは、Force Operation X SDK Airエクステンションの導入手順について説明します。Force Operation X SDK AirエクステンションはiOSおよびAndroidに対応しています。
@@ -130,6 +131,7 @@ Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devne
 ### ・[Androidの設定](./doc/setting_android/README.md)
 
 <div id="tracking_install"></div>
+
 ### 3 インストール計測の実装
 
 初回起動のインストール計測を実装することで、広告の効果測定を行うことができます。プロジェクトのソースコードを編集し、次の通り実装を行ってください。<br>
@@ -189,6 +191,7 @@ Fox Air Extensionでは、お使いの[Adobe Air SDK](http://www.adobe.com/devne
 
 
 <div id="tracking_ltv"></div>
+
 # 4 LTV計測の実装
 
 ## 4.1 LTV計測概要
@@ -343,6 +346,7 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 
 <div id="tracking_reengagement"></div>
+
 ## 6. リエンゲージメント計測機能の実装
 
 リエンゲージメント広告経由での起動を計測するための実装を説明します。
@@ -399,6 +403,7 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 ```
 
 <div id="integration_test"></div>
+
 ## 7. 疎通テストの実施
 
 マーケットへの申請までに、Force Operation Xを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
