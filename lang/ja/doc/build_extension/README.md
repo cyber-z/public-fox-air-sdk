@@ -21,6 +21,8 @@
 
 > ※ Adobe Air SDKのバージョンは現在開発に使われているバージョンで問題ありません。
 
+> ※ F.O.X iOS/Android SDK バージョン4.X.X系はサポートしておりません。
+
 ### 1.2 ビルドプロジェクト
 
 本リポジトリの[`FoxExtensionProj`](/FoxExtensionProj)がビルドプロジェクトとなっています。
