@@ -6,7 +6,7 @@
 
 1. [xmlファイルの編集](#edit_xml) : `conf/`内のxmlファイルのAirSDKバージョンの設定
 2. [FoxExtensionProjのビルド](#clean_project)
-3. [build.shを実行](#perform_build) : FoxExtension.aneの作成
+3. [buildを実行](#perform_build) : FoxExtension.aneの作成
 4. ANEファイル作成完了!
 
 ## 1. 環境
