@@ -1,4 +1,4 @@
 ## Force Operation X AIR Extension SDK Integration Guide
 
-###LANGUAGE
+### LANGUAGE
 * [Japanese](./lang/ja/README.md)
