@@ -45,6 +45,7 @@ FoxExtensionProj
 ## 2. ビルド
 
 <div id="edit_xml"></div>
+
 ### 2.1 xmlファイルの編集
 
 FoxExtensionProj/confに格納されている以下4つのxmlファイルのplatformタグに記載されているAdobeAirSDKバージョンを編集します。
@@ -72,6 +73,7 @@ Adobe Air SDK version 21.0を使っている場合
 ```
 
 <div id="clean_project"></div>
+
 ### 2.2 プロジェクトのビルド
 
 * Flash Builderに`FoxExtensionProj`プロジェクトをインポートします。
@@ -88,6 +90,7 @@ Adobe Air SDK version 21.0を使っている場合
 ![Clean02](./clean_02.png)
 
 <div id="perform_build"></div>
+
 ### 2.3 build.shを実行
 
 1. ターミナルからbuild.shを実行してください。
