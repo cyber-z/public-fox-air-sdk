@@ -33,7 +33,7 @@ FoxExtensionProj
           ├ conf
           ├ gps
           ├ src
-          └ build.sh
+          └ build
 ```
 
 |ファイル名|種類|詳細|
@@ -42,7 +42,7 @@ FoxExtensionProj
 |conf|ディレクトリ|ビルドに必要となるANE作成用の設定ファイル(xml)を格納しています。|
 |gps|ディレクトリ|GooglePlayServices(version 4.4 (4452000))を格納しています。|
 |src|ディレクトリ|ActionScriptによるラッパーコードを格納しています。<br>本ビルド作業で編集することはありません。|
-|build.sh|シェル実行ファイル|ビルドを実行するシェル実行ファイルとなります。|
+|build|実行ファイル|ビルドを実行するファイルとなります。|
 
 ## 2. ビルド
 
@@ -93,11 +93,11 @@ Adobe Air SDK version 21.0を使っている場合
 
 <div id="perform_build"></div>
 
-### 2.3 build.shを実行
+### 2.3 buildを実行
 
-1. ターミナルからbuild.shを実行してください。
+1. ターミナルからbuildを実行してください。
 ```
-> sh ./build.sh
+> ./build
 ```
 
 2. Flex SDKのHomeディレクトリのパスを入力してEnterを押してください(adbを実行するために必要となります)。<br>
