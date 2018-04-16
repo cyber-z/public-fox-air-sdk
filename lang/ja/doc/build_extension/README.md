@@ -6,7 +6,7 @@
 
 1. [xmlファイルの編集](#edit_xml) : `conf/`内のxmlファイルのAirSDKバージョンの設定
 2. [FoxExtensionProjのビルド](#clean_project)
-3. [build.shを実行](#perform_build) : FoxExtension.aneの作成
+3. [buildを実行](#perform_build) : FoxExtension.aneの作成
 4. ANEファイル作成完了!
 
 ## 1. 環境
@@ -17,9 +17,12 @@
 * [Adobe Air SDK](http://www.adobe.com/devnet/air/air-sdk-download.html)が導入されていること
 * Flash Builder
 
-> ※ Windows環境はサポートしておりません。ビルドの際はMacをご利用の上、実行ください。
 
-> ※ Adobe Air SDKのバージョンは現在お使いのバージョンで問題ありません。
+ ※ Windows環境はサポートしておりません。ビルドの際はMacをご利用の上、実行ください。
+
+ ※ Adobe Air SDKのバージョンは現在開発に使われているバージョンで問題ありません。
+
+ ※ F.O.X iOS/Android SDK バージョン4.X.X系はサポートしておりません。
 
 ### 1.2 ビルドプロジェクト
 
@@ -33,7 +36,7 @@ FoxExtensionProj
           ├ conf
           ├ gps
           ├ src
-          └ build.sh
+          └ build
 ```
 
 |ファイル名|種類|詳細|
@@ -49,6 +52,7 @@ FoxExtensionProj
 ## 2. ビルド
 
 <div id="edit_xml"></div>
+
 ### 2.1 xmlファイルの編集
 
 FoxExtensionProj/confに格納されている以下4つのxmlファイルのplatformタグに記載されているAdobeAirSDKバージョンを編集します。
@@ -76,6 +80,7 @@ Adobe Air SDK version 24.0を使っている場合
 ```
 
 <div id="clean_project"></div>
+
 ### 2.2 プロジェクトのビルド
 
 * Flash Builderに`FoxExtensionProj`プロジェクトをインポートします。
@@ -92,11 +97,12 @@ Adobe Air SDK version 24.0を使っている場合
 ![Clean02](./clean_02.png)
 
 <div id="perform_build"></div>
-### 2.3 build.shを実行
 
-1. ターミナルからbuild.shを実行してください。
+### 2.3 buildを実行
+
+1. ターミナルからbuildを実行してください。
 ```
-> sh ./build.sh
+> ./build
 ```
 
 2. Flex SDKのHomeディレクトリのパスを入力してEnterを押してください(adbを実行するために必要となります)。<br>
