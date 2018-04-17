@@ -5,5 +5,9 @@
 |eventName|String|255|必須|トラッキングを行うイベントを識別できる任意の名前を設定します。<br>イベント名は自由に設定可能です。<br>イベント単位でグルーピングされ、それぞれのイベントごとに集計を行うことができます。||action|String|255|オプション|イベントに属するアクション名を設定します。<br>アクション名は自由に設定可能です。<br>各イベントをドリルダウンすることで、アクションごとに集計を行うことができます。<br>特に指定しない場合は””を設定してください。|
 |label|String|255|オプション|アクションに属するラベル名を設定します。<br>ラベル名は自由に設定可能です。<br>各アクションをドリルダウンすることで、ラベルごとに集計を行うことができます。<br>特に指定しない場合は””を設定してください。||orderID|String|255|オプション|注文番号。特に指定いない場合は""を設定してください。|
 |sku|String|255|オプション|商品コード。特に指定しない場合は””を設定してください。||itemName|String|255|必須|商品名||price|double||必須|商品単価|
-|quantity|int||必須|購入数||currency|String||オプション|通貨コード。指定しなかった場合は"JPY"|トラッキングを行いたい任意の課金地点を計測することで、イベント名をキーにした売上を集計することができます。<br>以下のように記述してください。
-```as3	analytics.sendEvent(eventName, action, label, orderId, sku, itemName, price, quantity, currency);```---[トップ](/lang/ja/README.md)
+|quantity|int||必須|購入数||currency|String||オプション|通貨コード。指定しなかった場合は"JPY"||eventInfo|Object||オプション|任意の値をKey/Valueで設定できます|
+トラッキングを行いたい任意の課金地点を計測することで、イベント名をキーにした売上を集計することができます。<br>以下のように記述してください。|
+```as3
+var obj:Object = {"a":"テスト", "buid":11111};
+analytics.sendEvent(eventName, action, label, orderId, sku, itemName, price, quantity, currency, obj);```
+---[トップ](/lang/ja/README.md)
