@@ -34,7 +34,7 @@ if [ $? != 0 ]; then echo "=> Bad" && exit 1; else echo "=> OK"; fi
 # combine lib files for various platforms into one
 echo "${PRODUCT_NAME}_${CURRENT_PROJECT_VERSION} compile for ${CONFIGURATION}"
 
-CZ_BUILD_ARCHIVE_DIR=${BUILD_DIR}/../Intermediates/ArchiveIntermediates/${PRODUCT_NAME}/BuildProductsPath
+CZ_BUILD_ARCHIVE_DIR=${BUILD_DIR}/../Intermediates.noindex/ArchiveIntermediates/${PRODUCT_NAME}/BuildProductsPath
 
 lipo -create \
 "${CZ_BUILD_ARCHIVE_DIR}/${CONFIGURATION}-iphoneos/lib${PRODUCT_NAME}.a" \
