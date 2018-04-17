@@ -4,8 +4,8 @@ echo "${BR}"
 echo '--- Create FoxSDK Air Extensionmake ---'
 
 #---initailize---
-DEFAULT_IOS_VERSION="3.5.0"
-DEFAULT_ANDROID_VERSION="3.5.1"
+DEFAULT_IOS_VERSION="3.7.0"
+DEFAULT_ANDROID_VERSION="3.7.1"
 ANE_LIB_NAME="FoxExtension.ane"
 BR="\n"
 #-Download to
