@@ -343,6 +343,7 @@ Force Operation Xの導入時に作成したAppAdForce.plistを選択し、次�
 	・・・省略
 ```
 [アクセス解析によるイベント計測](./doc/analytics_event/README.md)
+
 [アクセス解析による課金計測](./doc/analytics_purchase/README.md)
 
 <div id="tracking_reengagement"></div>
