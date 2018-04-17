@@ -3,8 +3,8 @@
     <versionNumber>1.0.0</versionNumber>
     <platforms>
         <platform name="Android-ARM">
-            <applicationDeployment> 
-                <nativeLibrary>AppAdForce.jar</nativeLibrary> 
+            <applicationDeployment>
+                <nativeLibrary>FOXAndroidSDKANE.jar</nativeLibrary> 
                 <initializer>jp.appAdForce.android.ane.AppAdForceExtension</initializer> 
                 <finalizer>jp.appAdForce.android.ane.AppAdForceExtension</finalizer>
             </applicationDeployment> 

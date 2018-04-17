@@ -52,15 +52,19 @@ package jp.appAdForce
 		}
 				
 		
-		public function sendEvent(eventName:String, action:String, label:String, value:int):void
+		public function sendEvent(eventName:String, action:String, label:String, value:int, event:Object=null):void
 		{
 			
 			eventName = nullToEmpty(eventName);
 			action = nullToEmpty(action);
 			label = nullToEmpty(label);
+			var eventStr:String = "";
+			if (event != null) {
+				eventStr = nullToEmpty(JSON.stringify(event));
+			}
 			trace("Force Operation X extension sendEvent" + " eventName is -> " + eventName + " action is -> " + action + " label is -> " + label + " value is -> " + value);
 			try{
-				extContext.call("sendEvent",eventName,action,label,value);
+				extContext.call("sendEvent",eventName,action,label,value, eventStr);
 			} catch(e:Error){
 				traceErr(e);
 				throw e;
@@ -68,7 +72,8 @@ package jp.appAdForce
 		}
 		
 		
-		public function sendEventPurchase(eventName:String, action:String,label:String,orderId:String, sku:String, itemName:String, price:Number, quantity:int, currency:String):void
+		public function sendEventPurchase(eventName:String, action:String,label:String,orderId:String, sku:String, 
+										  itemName:String, price:Number, quantity:int, currency:String, eventInfo:Object=null):void
 		{
 			
 			eventName = nullToEmpty(eventName);
@@ -79,9 +84,43 @@ package jp.appAdForce
 			itemName = nullToEmpty(itemName);
 			currency = nullToEmpty(currency);
 			
+			var eventStr:String = "";
+			if (eventInfo != null) {
+				eventStr = nullToEmpty(JSON.stringify(eventInfo));
+			}
+			
 			trace("Force Operation X extension sendEventPurchase" + " eventName is -> " + eventName + " action is -> " + action + " label is -> " + label + " orderId is -> " + orderId + " sku is -> " + sku + " itemName is -> " + itemName+ " price is -> " + price+ " quantity is -> " + quantity + " currency is -> " + currency);
 			try{
-				extContext.call("sendEventPurchase",eventName,action,label,orderId,sku,itemName,price,quantity,currency);
+				extContext.call("sendEventPurchase",eventName,action,label,orderId,sku,itemName,price,quantity,currency,eventStr);
+			} catch(e:Error){
+				traceErr(e);
+				throw e;
+			}
+		}
+		
+		public function getUserInfo():Object {
+			var userInfo:Object = null;
+			try {
+				trace("Force Operation X extension getUserInfo");
+				var jsonStr:String = extContext.call("getUserInfo") as String;
+				if (jsonStr != null && jsonStr.length > 0) {
+					userInfo = JSON.parse(jsonStr);
+				}
+			} catch(e:Error){
+				traceErr(e);
+				throw e;
+			}
+			return userInfo;
+		}
+		
+		public function setUserInfo(json:Object):void {
+		
+			try {
+				trace("Force Operation X extension setUserInfo");
+				if (json != null) {
+					var jsonStr:String = JSON.stringify(json);
+					extContext.call("setUserInfo", nullToEmpty(jsonStr)); 
+				}
 			} catch(e:Error){
 				traceErr(e);
 				throw e;
