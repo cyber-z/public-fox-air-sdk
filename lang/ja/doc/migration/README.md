@@ -39,12 +39,19 @@ F.O.Xでは以下の４つの機能があります。
 
 # 参考資料
 ## Native SDK
-iOS 
+### iOS
 https://github.com/forceoperationx/public-fox-ios-sdk
 
-Android
+### Android
 https://github.com/forceoperationx/public-fox-android-sdk
 
-AIR
+### AIR
 https://github.com/forceoperationx/public-fox-air-sdk
+
+## Native SDK API
+### iOS
+https://github.com/forceoperationx/public-fox-ios-sdk/blob/4.x-master/lang/ja/doc/sdk_api/README.md
+
+### Android
+https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md#sdk_api
 
