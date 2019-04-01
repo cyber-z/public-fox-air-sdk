@@ -50,16 +50,6 @@ F.O.Xでは以下の４つの機能があります。
 | セッション計測 | onResume | Fox.trackSession(); | AnalyticsManager.sendStartSession( Context ); | private var analytics: AnalyticsManager = new AnalyticsManager ();<br>sendStartSession()void |[セッション計測](https://github.com/forceoperationx/public-fox-android-sdk/blob/4.x/lang/ja/README.md#61-%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E8%B5%B7%E5%8B%95%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AE%E8%A8%88%E6%B8%AC) |
 
 
-## before
-
-| F.O.X機能 | iOSの実行タイミング | iOS F.O.Xメソッド名（4.6.1） | Androidの実行タイミング | Android F.O.Xメソッド名（4.6.1） |   F.O.X AIR 3.X メソッド名 |
-|:-----------|:------------|:------------|:------------|:------------|:------------|
-| F.O.X初期化（activate） | `didFinishLaunchingWithOptions` | `[[CYZFoxConfig configWithAppId:0000 salt:@"xxxxx" appKey:@"xxxx"] activate];` | `onCreate` | ` int FOX_APP_ID = 発行されたアプリID;`<br>`String FOX_APP_KEY = "発行されたAPP_KEY";`<br>`String FOX_APP_SALT = "発行されたAPP_SALT";`<br>`FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);`<br>`config.addDebugOption(BuildConfig.DEBUG).activate();` | なし。APIではなく3.Xではplistやmanifest.xmlに設定を行なっていたため。 |
-| インストール計測 | `didFinishLaunchingWithOptions` | ` [CYZFox trackInstall];` | `onCreate` | `Fox.trackInstall();` | `sendConversionWithStartPage()` |
-| リエンゲージメント計測 | `application:(UIApplication *) application openURL:(nonnull NSURL *) url` | `[CYZFox handleOpenURL:url];` | `onResume` | `Fox.trackDeeplinkLaunch` | `sendReengagementConversion(String urlScheme):void` |
-| LTV/イベント計測 | 任意（イベント発生時） | チュートリアル突破<br>`CYZFoxEvent* event = [[CYZFoxEvent alloc] `<BR>`initWithEventName:@"_tutorial_comp" andLtvId:0000];`<br>`event.buid = @"User ID";`<br>`[CYZFox trackEvent:event];`<br>課金<br>`CYZFoxEvent* event = [[CYZFoxEvent alloc] initWithEventName:@"_purchase"];`<br>`event.price = 99;`<br>`event.currency = @"JPY";`<br>`event.sku = @"itemId";`<br>`[CYZFox trackEvent:event];` | 任意（イベント発生時） | チュートリアル突破<br>`FoxEvent tutorialEvent = new FoxEvent("_tutorial_comp", 成果地点ID);<br>tutorialEvent.buid = "ユーザーID";<br>Fox.trackEvent(tutorialEvent);`<br>課金<br>`FoxEvent purchaseEvent = new FoxEvent("_purchase", 成果地点ID);`<br>`purchaseEvent.price = 9.99;`<br>`purchaseEvent.currency = "USD";`<br>`purchaseEvent.sku = "ITEM_1";`<br>`Fox.trackEvent(purchaseEvent);`| 3.XではLTVとイベントが別でしたが4.Xからは統合されました。<br>LTV<br>`ad.sendLtv(成果地点ID);`<br>イベント<br>`var obj:Object = {"a":"テスト", "buid":11111};`<br>`analytics.sendEvent(eventName, action, label, value, obj);` | 
-| セッション計測 |`application:didFinishLaunchingWithOptions:`<br>`applicationWillEnterForeground` | `[CYZFox trackSession];` | `onResume()` | `Fox.trackSession();` | `private var analytics: AnalyticsManager = new AnalyticsManager ();`<br>`sendStartSession()void`|  
-
 # 参考資料
 
 ## Native SDK 3.X -> 4.X 移行ガイド
