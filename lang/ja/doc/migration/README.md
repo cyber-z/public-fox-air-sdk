@@ -29,6 +29,31 @@ F.O.Xでは以下の４つの機能があります。
 
 # 対応表
 
+## iOS
+| 4系機能 | ライフサイクル | 4系メソッド | 3系対応メソッド | 3.X AIR対応メソッド | 関連URL |
+| --- | --- | --- | --- | --- | --- |
+| 初期化（activate） | didFinishLaunchingWithOptions | CYZFoxConfig* foxConfig = [CYZFoxConfig configWithAppId:4879<br>        salt:@"xxxxx" <br>        appKey:@"yyyyyy"];<br>[foxConfig activate];<br><br>[foxConfig enableDebugMode];<br>[foxConfig activate]; | AppAdForce.plistの記載項目:<br>APP_ID<br>APP_SALT<br>ANALYTICS_APP_KEY | なし。3.Xではplistやmanifest.xmlに設定を行なっていたが4.Xではactivate()を提供するため<br>またサーバURLの設定も4.Xからは不要 |  |
+| インストール計測 | didFinishLaunchingWithOptions | [CYZFox trackInstall] | [adManager sendConversionWithStartpage:@default] | sendConversionWithStartPage() |  |
+| リエンゲージメント計測 | application:(UIApplication *) application openURL:(nonnull NSURL *) url | [CYZFox handleOpenURL:url] | [adManager setUrlScheme:url] | sendReengagementConversion(String urlScheme):void |  |
+| LTV/イベント計測 | 任意（イベント発生時） | [CYZFox trackEvent:[[CYZFoxEvent alloc] initWithEventName:@"Tutorial"]];<br><br>CYZFoxEvent* event = [[CYZFoxEvent alloc] initWithEventName:@"purchase" ltvId:123];<br>event.price = 9.99;<br>event.currency = @"USD";<br>[CYZFox trackEvent:event]; | [AnalyticsManager sendEvent:@"Tutorial" action:nil label:nil value:0]<br><br>[ltv addParameter:LTV_PARAM_PRICE :@"9.99"];<br>[ltv addParameter:LTV_PARAM_CURRENCY :@"USD"]<br>[ltv sendLtv:123]<br>[AnalyticsManager sendEvent:@"purchase" action:nil label:nil orderID:nil sku:nil itemName:nil price:9.99 quantity:1 currency:@"USD"; | 3.XではLTVとイベントが別でしたが4.Xからは統合されました。<br>LTV<br>ad.sendLtv(成果地点ID);<br>イベント<br>var obj:Object = {"a":"テスト", "buid":11111};<br>analytics.sendEvent(eventName, action, label, value, obj); |  |
+| セッション計測 | application:didFinishLaunchingWithOptions:<br>applicationWillEnterForeground | [CYZFox trackSession]; | [ForceAnalyticsManager sendStartSession]; | private var analytics: AnalyticsManager = new AnalyticsManager ();<br>sendStartSession()void |  |
+
+
+
+
+
+## Android
+| 4系機能 | ライフサイクル | 4系メソッド | 3系対応メソッド | 3.X AIR対応メソッド | 関連URL |
+| --- | --- | --- | --- | --- | --- |
+| 初期化（activate） | onCreate | FoxConfig config = <br>new FoxConfig("APPADFORCE_APP_ID", "ANALYTICS_APP_KEY", "APPADFORCE_CRYPTO_SALT");<br>config.activate(); | AndroidManifest.xml<br><meta-data><br>・APPADFORCE_APP_ID<br>・APPADFORCE_CRYPTO_SALT<br>・ANALYTICS_APP_KEY |  |  |
+| インストール計測 | onCreate | FoxTrackOption opt = new FoxTrackOption();<br>opt.addRedirectUrl("https://redirectSite.com");<br>opt.addBuid("USER_0001")<br>Fox.trackInstall(opt); | AdManager ad = new AdManager( Context );<br>ad.sendConversion("default"); |  |  |
+| リエンゲージメント計測 | onResume | Fox.trackDeeplinkLaunch(Intent); | AdManager ad = new AdManager( Context );<br>ad.sendReengagementConversion(Intent); |  |  |
+| LTV/イベント計測 | 任意（イベント発生時） | FoxEvent event = new FoxEvent("チュートリアル完了");<br>Fox.trackEvent(event);<br><br>FoxEvent event = new FoxEvent("イベント名", 成果地点ID);<br>event.price = 9.99;<br>event.currency = "USD";<br>event.quantity = 1;<br>Fox.trackEvent(event); | AnalyticsManager.sendEvent(Context, "チュートリアル完了", null, null, 1);<br><br>// LTV計測による課金計測<br>AdManager ad = new AdManager( Context )<br>LtvManager ltv = new LtvManager( ad );<br>ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");<br>ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");<br>ltv.sendLtvConversion( 成果地点ID );<br><br>// アクセス解析による課金計測(※1)<br>AnalyticsManager.sendEvent(Context, "イベント名", action, null, null, orderId, sku, itemName, 9.99, 1, "USD"); |  |  |
+| セッション計測 | onResume | Fox.trackSession(); | AnalyticsManager.sendStartSession( Context ); |  |  |
+
+
+## before
+
 | F.O.X機能 | iOSの実行タイミング | iOS F.O.Xメソッド名（4.6.1） | Androidの実行タイミング | Android F.O.Xメソッド名（4.6.1） |   F.O.X AIR 3.X メソッド名 |
 |:-----------|:------------|:------------|:------------|:------------|:------------|
 | F.O.X初期化（activate） | `didFinishLaunchingWithOptions` | `[[CYZFoxConfig configWithAppId:0000 salt:@"xxxxx" appKey:@"xxxx"] activate];` | `onCreate` | ` int FOX_APP_ID = 発行されたアプリID;`<br>`String FOX_APP_KEY = "発行されたAPP_KEY";`<br>`String FOX_APP_SALT = "発行されたAPP_SALT";`<br>`FoxConfig config = new FoxConfig(this, FOX_APP_ID, FOX_APP_KEY, FOX_APP_SALT);`<br>`config.addDebugOption(BuildConfig.DEBUG).activate();` | なし。APIではなく3.Xではplistやmanifest.xmlに設定を行なっていたため。 |
